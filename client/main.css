@@ -1,0 +1,64 @@
+.centered{
+    text-align:center;
+    margin-right:auto;
+    margin-left:auto;
+    padding:10px;
+}
+
+.delete-button {
+    margin-top:10px;
+    float: right;
+    font-weight: bold;
+    background: none;
+    font-size: 1em;
+    border: none;
+    position: relative;
+}
+
+.main-container{
+    margin-right:auto;
+    margin-left:auto;
+    width:600px;
+    min-width:500px;}
+
+li {
+    /*position: relative;*/
+    display:block;
+    list-style: none;
+    padding: 15px;
+    border-bottom: #eee solid 1px;
+}
+
+li>*{display:inline-block !important}
+
+li .task-text  {
+    margin-left: 10px;
+}
+/*TODO*/
+li.checked {
+    color: #888;
+}
+/*TODO*/
+li.checked .task-text {
+    text-decoration: line-through;
+}
+
+.date-control {
+    padding-top:10px;
+    max-width: 300px}
+
+.dateChangeBtn{
+    max-width: 30px}
+
+.navbar .navbar-nav {
+    display: inline-block;
+    float: none;
+}
+
+.navbar .navbar-collapse {
+    text-align: center;
+}
+
+.navbar-right{
+    padding-top:10px
+}
