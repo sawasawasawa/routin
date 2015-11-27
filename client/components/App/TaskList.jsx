@@ -12,7 +12,7 @@ TaskList = React.createClass({
                 dueTasks: Tasks.find({
                     userId:Meteor.userId(),
                     dueDate: moment(Session.get("displayedDate")).format("L")
-                }).fetch()
+                }, {sort:{checked:-1}}).fetch()
         }
     },
 
@@ -58,7 +58,7 @@ TaskList = React.createClass({
                     <TaskInput />
                     <div className="centered">
                         <button type="button" className="btn btn-primary btn-lg center" onClick = {this.copyUnchecked}>
-                            <span className="glyphicon glyphicon-star" aria-hidden="true"></span> Copy unchecked tasks
+                            Copy unchecked tasks
                         </button>
                     </div>
                     <ul className="list-group">

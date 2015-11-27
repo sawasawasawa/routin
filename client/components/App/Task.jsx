@@ -14,32 +14,39 @@ Task = React.createClass({
 
     classIfChecked(){
         if (this.props.task.checked){
-            return "list-group-item checked";
+            return " checked";
         }
         else {
-            return "list-group-item";
+            return "";
         }
     },
 
     render() {
         return (
-            <li className={this.classIfChecked()}>
+            <li className={"form-group list-group-item"+this.classIfChecked()}>
                 <div className="checkbox">
-                    <label>
+
                         <input
                             type="checkbox"
                             checked={this.props.task.checked}
                             onClick={this.toggleChecked}/>
-                    </label>
+
                 </div>
-                <button className="delete-button" onClick={this.deleteTask}>&times;</button>
-                <div className="task-text">
-                    {this.props.task.text}
-                </div>
-                <div className="task-edit">
-                    <input type="text" onChange={this.update.bind(this)} onBlur={this.updateTask}/>
-                        {this.state.text}
-                </div>
+                <form className="form-group">
+                    <input className= {"form-control task-text-input "+this.classIfChecked()}
+                               type="text"
+                               onChange={this.update}
+                               value={this.state.text}
+                               placeholder="Change task text or delete by clicking x on the right"
+                               onBlur={this.updateTask}
+                                onSubmit={this.updateTask}
+                    />
+                </form>
+                <span className="glyphicon glyphicon-remove-circle"
+                      aria-hidden="true"
+                      onClick={this.deleteTask}
+                ></span>
+
             </li>
         );
     },
@@ -66,3 +73,8 @@ Task = React.createClass({
         Tasks.remove(this.props.task._id);
     }
 });
+
+//
+//<button type="button" className="btn btn-default delete-button" aria-label="Left Align" onClick={this.deleteTask}>
+//    <span className="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+////</button

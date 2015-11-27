@@ -6,13 +6,22 @@
 }
 
 .delete-button {
-    margin-top:10px;
+
     float: right;
+    left:3px;
     font-weight: bold;
-    background: none;
+    background: white;
     font-size: 1em;
-    border: none;
-    position: relative;
+    /*position: relative;*/
+    border:none;
+}
+
+.glyphicon-remove-circle{
+    top:8px;
+    float: right;
+    left:7px ;
+    background: white;
+    color: #888;
 }
 
 .main-container{
@@ -35,11 +44,15 @@ li .task-text  {
     margin-left: 10px;
 }
 /*TODO*/
-li.checked {
+/*li.checked {
     color: #888;
 }
-/*TODO*/
+!*TODO*!
 li.checked .task-text {
+    text-decoration: line-through;
+}*/
+.checked {
+    color: #888;
     text-decoration: line-through;
 }
 
@@ -61,4 +74,44 @@ li.checked .task-text {
 
 .navbar-right{
     padding-top:10px
+}
+
+.copyUnchecked{
+    min-width:300px;
+}
+
+
+.checked {
+    text-decoration: line-through;
+}
+
+
+.list-group-item .checked{
+    background-color: lightgray;
+}
+
+.form-group{
+    width:97%;
+}
+
+.form-control, .task-text-input, .list-group-item {
+    max-width:100%;
+    padding-right:0px;
+    padding-left:10px;
+
+    box-shadow:none;
+}
+/*.task-text-input{
+    border-radius:0px;
+    background: rgb(246, 246, 246);
+    border-bottom: 2px dashed #888;
+}*/
+/*.list-group-item{
+    background: rgb(246, 246, 246);
+    border-bottom: 2px dashed #888;
+}*/
+
+.checkbox{
+    top:-4px;
+    left:5px;
 }
