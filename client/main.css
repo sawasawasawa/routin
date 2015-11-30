@@ -68,6 +68,10 @@ li.checked .task-text {
     float: none;
 }
 
+.navbar-brand{
+    height:60px;
+}
+
 .navbar .navbar-collapse {
     text-align: center;
 }
@@ -98,8 +102,9 @@ li.checked .task-text {
     max-width:100%;
     padding-right:0px;
     padding-left:10px;
-
+    padding-bottom:0px;
     box-shadow:none;
+
 }
 /*.task-text-input{
     border-radius:0px;
@@ -114,4 +119,9 @@ li.checked .task-text {
 .checkbox{
     top:-4px;
     left:5px;
+}
+
+.task-text-input {
+    border:0px;
+
 }
