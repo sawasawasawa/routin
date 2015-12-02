@@ -14,15 +14,16 @@ TaskInput = React.createClass({
     handleSubmit(event){
         event.preventDefault();
         var text = React.findDOMNode(this.refs.textInput).value.trim();
+        var _date = moment(Session.get("displayedDate")).format("L")
 
         Tasks.insert(
             {
                 userId: Meteor.userId(),
                 text:text,
-                createdAt: moment().format("L"),
+                createdAt: _date,
                 cat: "test",
-                dueDate_first: moment().format("L"),
-                dueDate: moment().format("L"),
+                dueDate_first: _date,
+                dueDate: _date,
                 streak_arr: [0, 0, 0, 0, 0, 0, 0],
                 username: Meteor.user().emails[0]["address"],
                 checked: false
