@@ -44,7 +44,8 @@ TaskList = React.createClass({
                         dueDate: moment(copy.dueDate).add(1, 'days').format("L"),
                         streak_arr: [0, 0, 0, 0, 0, 0, 0],
                         username: copy.username,
-                        checked: false
+                        checked: false,
+                        subtasks: copy.subtasks
                     }
             );
 

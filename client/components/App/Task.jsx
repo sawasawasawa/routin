@@ -39,14 +39,26 @@ Task = React.createClass({
                                value={this.state.text}
                                placeholder="Change task text or delete by clicking x on the right"
                                onBlur={this.updateTask}
-                                onSubmit={this.updateTask}
+                               onSubmit={this.updateTask}
                     />
                 </form>
                 <span className="glyphicon glyphicon-remove-circle"
                       aria-hidden="true"
                       onClick={this.deleteTask}
                 ></span>
-
+                <div>Subtasks:
+                    <form className="form-group">
+                        <input
+                        className= {"form-control task-text-input"}
+                               type="text"
+                        //       onChange={this.updateSubTask}
+                               value={this.state.subtasks}
+                               placeholder="Change task text or delete by clicking x on the right"
+                        //       onBlur={this.updateSubTask}
+                        //       onSubmit={this.updateSubTask}
+                        />
+                    </form>
+                </div>
             </li>
         );
     },
@@ -68,10 +80,34 @@ Task = React.createClass({
         });
     },
 
-    deleteTask(event){
-        event.preventDefault();
-        Tasks.remove(this.props.task._id);
-    }
+    // subtasks methods
+
+    //deleteSubTask(event){
+    //    event.preventDefault();
+    //    Tasks.remove(this.props.task.subtasks[0]);
+    //},
+    //
+    //updateSubTask(e){
+    //    this.setState({subtasks: [e.target.value]})
+    //},
+    //
+    //toggleCheckedSubTask() {
+    //    // Set the checked property to the opposite of its current value
+    //    Tasks.update(this.props.task._id, {
+    //        $set: {checked: ! this.props.task.checked}
+    //    });
+    //},
+    //
+    //updateSubTask() {
+    //    Tasks.update(this.props.task._id, {
+    //        $set: {text: this.state.text}
+    //    });
+    //},
+    //
+    //deleteSubTask(event){
+    //    event.preventDefault();
+    //    Tasks.remove(this.props.task._id);
+    //}
 });
 
 //
