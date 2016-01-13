@@ -26,8 +26,8 @@ TaskInput = React.createClass({
                 dueDate: _date,
                 streak_arr: [0, 0, 0, 0, 0, 0, 0],
                 username: Meteor.user().emails[0]["address"],
-                checked: false,
-                subtasks: ["666", "6662", "6663"]
+                checked: false
+
             }
         );
         React.findDOMNode(this.refs.textInput).value ="";

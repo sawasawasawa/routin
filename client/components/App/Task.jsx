@@ -8,7 +8,8 @@ Task = React.createClass({
     getInitialState() {
         return {
             checked: this.props.task.checked,
-            text: this.props.task.text
+            text: this.props.task.text,
+            subtasks: this.props.task.subtasks
         }
     },
 
@@ -21,9 +22,16 @@ Task = React.createClass({
         }
     },
 
+    renderSubTasks() {
+        return this.state.subtasks.map((subtask) => {
+            return <SubTask  key={subtask.key} subtask={subtask.text} />;
+        });
+    },
+
     render() {
         return (
             <li className={"form-group list-group-item"+this.classIfChecked()}>
+
                 <div className="checkbox">
 
                         <input
@@ -42,25 +50,26 @@ Task = React.createClass({
                                onSubmit={this.updateTask}
                     />
                 </form>
+
                 <span className="glyphicon glyphicon-remove-circle"
-                      aria-hidden="true"
-                      onClick={this.deleteTask}
+                //aria-hidden="true"
+                              onClick={this.deleteTask}
+            ></span>
+                <br></br>
+                <ul className ="subtasks">
+                    {this.renderSubTasks()}
+                </ul>
+                <span className="glyphicon glyphicon-plus"
+                    //aria-hidden="true"
+                      onClick={this.addSubtask}
                 ></span>
-                <div>Subtasks:
-                    <form className="form-group">
-                        <input
-                        className= {"form-control task-text-input"}
-                               type="text"
-                        //       onChange={this.updateSubTask}
-                               value={this.state.subtasks}
-                               placeholder="Change task text or delete by clicking x on the right"
-                        //       onBlur={this.updateSubTask}
-                        //       onSubmit={this.updateSubTask}
-                        />
-                    </form>
-                </div>
             </li>
         );
+    },
+
+    deleteTask(event){
+        event.preventDefault();
+        Tasks.remove(this.props.task._id);
     },
 
     update(e){
@@ -80,37 +89,15 @@ Task = React.createClass({
         });
     },
 
-    // subtasks methods
+    addSubtask(event) {
+        event.preventDefault();
+        console.log("adding subtask");
+        var _subtasks = this.state.subtasks;
+        _subtasks.push({key : this.props.task.subtasks.length, text: "added subtask"});
+        Tasks.update(this.props.task._id, {
+            $set: {subtasks: _subtasks}
+        });
+    }
 
-    //deleteSubTask(event){
-    //    event.preventDefault();
-    //    Tasks.remove(this.props.task.subtasks[0]);
-    //},
-    //
-    //updateSubTask(e){
-    //    this.setState({subtasks: [e.target.value]})
-    //},
-    //
-    //toggleCheckedSubTask() {
-    //    // Set the checked property to the opposite of its current value
-    //    Tasks.update(this.props.task._id, {
-    //        $set: {checked: ! this.props.task.checked}
-    //    });
-    //},
-    //
-    //updateSubTask() {
-    //    Tasks.update(this.props.task._id, {
-    //        $set: {text: this.state.text}
-    //    });
-    //},
-    //
-    //deleteSubTask(event){
-    //    event.preventDefault();
-    //    Tasks.remove(this.props.task._id);
-    //}
+
 });
-
-//
-//<button type="button" className="btn btn-default delete-button" aria-label="Left Align" onClick={this.deleteTask}>
-//    <span className="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
-////</button
