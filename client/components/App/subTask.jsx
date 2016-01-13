@@ -11,7 +11,7 @@ SubTask = React.createClass({
         return {
             //checked: this.props.task.checked,
             //text: this.props.task.text,
-            key: this.props.subtask.key,
+            key: this.props.key,
             subtask: this.props.subtask
         }
     },
