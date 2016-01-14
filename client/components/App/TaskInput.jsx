@@ -1,12 +1,11 @@
-
 TaskInput = React.createClass({
     render(){
         return (
-            <form className="new-task" onSubmit={this.handleSubmit} >
+            <form className="new-task" onSubmit={this.handleSubmit}>
                 <input className="form-control"
-                    type="text"
-                    ref="textInput"
-                    placeholder="Type to add new tasks" />
+                       type="text"
+                       ref="textInput"
+                       placeholder="Type to add new tasks"/>
             </form>
         )
     },
@@ -19,18 +18,21 @@ TaskInput = React.createClass({
         Tasks.insert(
             {
                 userId: Meteor.userId(),
-                text:text,
+                text: text,
                 createdAt: _date,
                 cat: "test",
                 dueDate_first: _date,
                 dueDate: _date,
                 streak_arr: [0, 0, 0, 0, 0, 0, 0],
                 username: Meteor.user().emails[0]["address"],
-                checked: false
+                checked: false,
+                subtasks: [
+                    {"key": 0, "subtask": "default text", "checked": false}]
+
 
             }
         );
-        React.findDOMNode(this.refs.textInput).value ="";
+        React.findDOMNode(this.refs.textInput).value = "";
     }
 });
 

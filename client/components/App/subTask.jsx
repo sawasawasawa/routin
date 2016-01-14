@@ -8,49 +8,48 @@ SubTask = React.createClass({
     },
 
     getInitialState() {
+        if (this.props.checked===undefined){this.props.checked = false}
         return {
             //checked: this.props.task.checked,
             //text: this.props.task.text,
+            taskId: this.props.taskId,
             key: this.props.key,
-            subtask: this.props.subtask
+            subtask: this.props.subtask,
+            checked: this.props.checked
         }
     },
 
-    //classIfChecked(){
-    //    if (this.props.task.checked){
-    //        return " checked";
-    //    }
-    //    else {
-    //        return "";
-    //    }
-    //},
-    //
-    //renderSubTasks() {
-    //    return this.state.subtasks.map((subtask) => {
-    //        return <SubTask key={subtask._id} subtask={subtask} />;
-    //    });
-    //},
+    classIfChecked(){
+        if (this.state.checked){
+            return " checked";
+        }
+        else {
+            return "";
+        }
+    },
+
+
 
     render() {
 
         return (
-            <li className="form-group list-group-item subtask">
+            <li className={"form-group list-group-item subtask "+ this.classIfChecked()} >
                 <div className="checkbox">
 
                     <input
                         type="checkbox"
-                        //checked={this.props.task.checked}
-                        //onClick={this.toggleChecked}/
+                        checked={this.props.checked}
+                        onClick={this.toggleCheckedSubTask}
                     />
                 </div>
                 <form className="form-group">
                     <input className= {"form-control task-text-input "}
                            type="text"
-                           //onChange={this.update}
+                           onChange={console.log("changing", this)}
                            value={this.state.subtask}
                            placeholder="Change task text or delete by clicking x on the right"
-                           //onBlur={this.updateTask}
-                           //onSubmit={this.updateTask}
+                           onBlur={console.log("changing", this)}
+                           onSubmit={console.log("changing", this)}
                     />
                 </form>
 
@@ -64,21 +63,21 @@ SubTask = React.createClass({
 
     // subtasks methods
 
-    deleteSubTask(event){
-            event.preventDefault();
-            Tasks.remove(this.props.task.subtasks[0]);
-        },
 
     //updateSubTask(e){
     //        this.setState({subtasks: [e.target.value]})
     //    },
     //
-    //toggleCheckedSubTask() {
-    //        // Set the checked property to the opposite of its current value
-    //        Tasks.update(this.props.task._id, {
-    //            $set: {checked: ! this.props.task.checked}
-    //        });
-    //    },
+    toggleCheckedSubTask() {
+            // Set the checked property to the opposite of its current value
+        console.table(Tasks.find([this.state.taskId].subtasks).fetch());
+            Tasks.update(this.state.taskId, {
+                //$set: {checked: ! this.state.checked}
+
+            $set: {pingwin: ! this.state.checked}
+                //$set: {subtasks[0]."checked": !this.state.checked}
+            });
+        },
     //
     //updateSubTask() {
     //        Tasks.update(this.props.task._id, {

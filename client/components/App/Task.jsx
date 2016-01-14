@@ -14,7 +14,7 @@ Task = React.createClass({
     },
 
     classIfChecked(){
-        if (this.props.task.checked){
+        if (this.props.task.checked) {
             return " checked";
         }
         else {
@@ -24,7 +24,7 @@ Task = React.createClass({
 
     renderSubTasks() {
         return this.state.subtasks.map((subtask) => {
-            return <SubTask  key={subtask.key} subtask={subtask.text} />;
+            return <SubTask key={subtask.key} subtask={subtask.subtask} checked={subtask.checked} taskId={this.props.task._id}/>;
         });
     },
 
@@ -34,29 +34,29 @@ Task = React.createClass({
 
                 <div className="checkbox">
 
-                        <input
-                            type="checkbox"
-                            checked={this.props.task.checked}
-                            onClick={this.toggleChecked}/>
+                    <input
+                        type="checkbox"
+                        checked={this.props.task.checked}
+                        onClick={this.toggleChecked}/>
 
                 </div>
                 <form className="form-group">
-                    <input className= {"form-control task-text-input "+this.classIfChecked()}
-                               type="text"
-                               onChange={this.update}
-                               value={this.state.text}
-                               placeholder="Change task text or delete by clicking x on the right"
-                               onBlur={this.updateTask}
-                               onSubmit={this.updateTask}
+                    <input className={"form-control task-text-input "+this.classIfChecked()}
+                           type="text"
+                           onChange={this.update}
+                           value={this.state.text}
+                           placeholder="Change task text or delete by clicking x on the right"
+                           onBlur={this.updateTask}
+                           onSubmit={this.updateTask}
                     />
                 </form>
 
                 <span className="glyphicon glyphicon-remove-circle"
-                //aria-hidden="true"
-                              onClick={this.deleteTask}
-            ></span>
+                    //aria-hidden="true"
+                      onClick={this.deleteTask}
+                ></span>
                 <br></br>
-                <ul className ="subtasks">
+                <ul className="subtasks">
                     {this.renderSubTasks()}
                 </ul>
                 <span className="glyphicon glyphicon-plus"
@@ -79,7 +79,7 @@ Task = React.createClass({
     toggleChecked() {
         // Set the checked property to the opposite of its current value
         Tasks.update(this.props.task._id, {
-            $set: {checked: ! this.props.task.checked}
+            $set: {checked: !this.props.task.checked}
         });
     },
 
@@ -93,7 +93,7 @@ Task = React.createClass({
         event.preventDefault();
         console.log("adding subtask");
         var _subtasks = this.state.subtasks;
-        _subtasks.push({key : this.props.task.subtasks.length, text: "added subtask"});
+        _subtasks.push({key: this.props.task.subtasks.length, subtask: "added subtask", checked:false});
         Tasks.update(this.props.task._id, {
             $set: {subtasks: _subtasks}
         });
