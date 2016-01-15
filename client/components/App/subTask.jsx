@@ -1,4 +1,3 @@
-
 SubTask = React.createClass({
 
     propTypes: {
@@ -8,19 +7,21 @@ SubTask = React.createClass({
     },
 
     getInitialState() {
-        if (this.props.checked===undefined){this.props.checked = false}
+        if (this.props.checked === undefined) {
+            this.props.checked = false
+        }
         return {
-            //checked: this.props.task.checked,
-            //text: this.props.task.text,
-            taskId: this.props.taskId,
-            key: this.props.key,
+            myKey: this.props.myKey,
             subtask: this.props.subtask,
-            checked: this.props.checked
+            checked: this.props.checked,
+            taskId: this.props.taskId,
         }
     },
 
     classIfChecked(){
-        if (this.state.checked){
+        console.log("props: ", this.props);
+        console.log("state: ", this.state);
+        if (this.state.checked) {
             return " checked";
         }
         else {
@@ -29,37 +30,36 @@ SubTask = React.createClass({
     },
 
 
-
     render() {
 
         return (
-            <li className={"form-group list-group-item subtask "+ this.classIfChecked()} >
+            <li className={"form-group list-group-item subtask "+ this.classIfChecked()}>
                 <div className="checkbox">
 
                     <input
                         type="checkbox"
-                        checked={this.props.checked}
+                        checked={this.state.checked}
                         onClick={this.toggleCheckedSubTask}
                     />
                 </div>
                 <form className="form-group">
-                    <input className= {"form-control task-text-input "}
+                    <input className={"form-control task-text-input "}
                            type="text"
-                           onChange={console.log("changing", this)}
-                           value={this.state.subtask}
+                           onChange={this.update}
+                           value={this.state.subtask }
                            placeholder="Change task text or delete by clicking x on the right"
-                           onBlur={console.log("changing", this)}
-                           onSubmit={console.log("changing", this)}
+                           onBlur={this.updateSubTask}
+                           onSubmit={this.updateSubTask}
                     />
                 </form>
 
                 <span className="glyphicon glyphicon-remove-circle"
-                    aria-hidden="true"
+                      //aria-hidden="true"
                       onClick={this.deleteSubTask}
                 ></span>
             </li>
-    );
-},
+        );
+    },
 
     // subtasks methods
 
@@ -69,26 +69,42 @@ SubTask = React.createClass({
     //    },
     //
     toggleCheckedSubTask() {
-            // Set the checked property to the opposite of its current value
-        console.table(Tasks.find([this.state.taskId].subtasks).fetch());
-            Tasks.update(this.state.taskId, {
-                //$set: {checked: ! this.state.checked}
+        // Set the checked property to the opposite of its current value
+        var _wholeTask = Tasks.find(this.state.taskId).fetch();
+        var _subtasks = _wholeTask[0].subtasks;
+        var _checked = _.findWhere(_subtasks, {subtask: this.state.subtask}).checked;
+        _.findWhere(_subtasks, {myKey: this.props.myKey}).checked = !_checked;
+        this.state.checked = !_checked;
+        Tasks.update(this.state.taskId, {
+            $set: {subtasks: _subtasks}
+        });
+    },
 
-            $set: {pingwin: ! this.state.checked}
-                //$set: {subtasks[0]."checked": !this.state.checked}
-            });
-        },
-    //
-    //updateSubTask() {
-    //        Tasks.update(this.props.task._id, {
-    //            $set: {text: this.state.text}
-    //        });
-    //    },
+    updateSubTask() {
+        var _wholeTask = Tasks.find(this.state.taskId).fetch();
+        var _subtasks = _wholeTask[0].subtasks;
+        var _text = this.state.subtask;
+        _.findWhere(_subtasks, {myKey: this.props.myKey}).subtask = _text;
+        Tasks.update(this.props.taskId, {
+            $set: {subtasks: _subtasks}
+        });
+        _wholeTask = Tasks.find(this.state.taskId).fetch();
+    },
+
+    update(e){
+        this.setState({subtask: e.target.value})
+    },
 
     deleteSubTask(event){
-            event.preventDefault();
-            console.log('deleting subtask');
-            Tasks.remove(this.state.subtask);
+        console.log('deleteing subtask...');
+        var _wholeTask = Tasks.find(this.state.taskId).fetch();
+        var _subtasks = _wholeTask[0].subtasks;
+        var _deletedTask = _.findWhere(_subtasks, {key: this.props.myKey});
+        _subtasks = _.without(_subtasks, _deletedTask);
+        Tasks.update(this.props.taskId, {
+            $set: {subtasks: _subtasks}
+        });
+
     }
 
-    });
+});

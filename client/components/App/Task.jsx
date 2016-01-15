@@ -5,11 +5,14 @@ Task = React.createClass({
         task: React.PropTypes.object.isRequired
     },
 
+
+
     getInitialState() {
         return {
             checked: this.props.task.checked,
             text: this.props.task.text,
-            subtasks: this.props.task.subtasks
+            subtasks: this.props.subtasks,
+
         }
     },
 
@@ -23,8 +26,9 @@ Task = React.createClass({
     },
 
     renderSubTasks() {
-        return this.state.subtasks.map((subtask) => {
-            return <SubTask key={subtask.key} subtask={subtask.subtask} checked={subtask.checked} taskId={this.props.task._id}/>;
+        return this.props.subtasks.map((subtask) => {
+            console.log(subtask);
+            return <SubTask myKey={subtask.key} subtask={subtask.subtask} checked={subtask.checked} taskId={this.props.task._id}/>;
         });
     },
 
@@ -93,7 +97,10 @@ Task = React.createClass({
         event.preventDefault();
         console.log("adding subtask");
         var _subtasks = this.state.subtasks;
-        _subtasks.push({key: this.props.task.subtasks.length, subtask: "added subtask", checked:false});
+        var _key = 0;
+        var _maxKey = _.max(this.props.task.subtasks, function(subtask){return subtask.key;}).key +1;
+        if (_maxKey && _maxKey > 0 ){_key = _maxKey};
+        _subtasks.push({key: _key, subtask: "added subtask", checked:false});
         Tasks.update(this.props.task._id, {
             $set: {subtasks: _subtasks}
         });

@@ -12,13 +12,13 @@ TaskList = React.createClass({
                 dueTasks: Tasks.find({
                     userId:Meteor.userId(),
                     dueDate: moment(Session.get("displayedDate")).format("L")
-                }, {sort:{checked:-1}}).fetch()
+                }, {sort:{checked:1}}).fetch()
         }
     },
 
     renderTasks() {
         return this.data.dueTasks.map((task) => {
-            return <Task key={task._id} task={task} />;
+            return <Task keyId={task._id} task={task} subtasks={task.subtasks}/>;
         });
     },
 
@@ -72,45 +72,3 @@ TaskList = React.createClass({
     }
 });
 
-
-SubTaskList = React.createClass({
-    // This mixin makes the getMeteorData method work
-    mixins: [ReactMeteorData],
-
-    // Loads items from the Tasks collection and puts them on this.data.tasks
-    getMeteorData() {
-        Meteor.subscribe('tasks');
-        console.log('LOG: SUBTASKLIST getMeteorData displayedDate: ', Session.get("displayedDate"));
-        return {
-            dueTasks: Tasks.find({
-                userId:Meteor.userId(),
-                dueDate: moment(Session.get("displayedDate")).format("L")
-            }, {sort:{checked:-1}}).fetch()
-        }
-    },
-
-    renderSubTasks() {
-        return this.data.dueTasks.map((task) => {
-            return <Task key={task._id} task={task} />;
-        });
-    },
-
-    render() {
-        return (
-            <div>
-                <div className="container-fluid main-container main-content">
-                    <TaskInput />
-                    <div className="centered">
-                        <button type="button" className="btn btn-primary btn-lg center" onClick = {this.copyUnchecked}>
-                            Copy unchecked tasks
-                        </button>
-                    </div>
-                    <ul className="list-group">
-                        {this.renderTasks()}
-                    </ul>
-                </div>
-            </div>
-
-        );
-    }
-});

@@ -27,7 +27,8 @@ TaskInput = React.createClass({
                 username: Meteor.user().emails[0]["address"],
                 checked: false,
                 subtasks: [
-                    {"key": 0, "subtask": "default text", "checked": false}]
+
+                ]
 
 
             }
