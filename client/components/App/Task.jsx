@@ -6,12 +6,11 @@ Task = React.createClass({
     },
 
 
-
     getInitialState() {
         return {
             checked: this.props.task.checked,
             text: this.props.task.text,
-            subtasks: this.props.subtasks,
+            subtasks: this.props.subtasks
 
         }
     },
@@ -23,13 +22,6 @@ Task = React.createClass({
         else {
             return "";
         }
-    },
-
-    renderSubTasks() {
-        return this.props.subtasks.map((subtask) => {
-            console.log(subtask);
-            return <SubTask myKey={subtask.key} subtask={subtask.subtask} checked={subtask.checked} taskId={this.props.task._id}/>;
-        });
     },
 
     render() {
@@ -59,14 +51,14 @@ Task = React.createClass({
                     //aria-hidden="true"
                       onClick={this.deleteTask}
                 ></span>
-                <br></br>
-                <ul className="subtasks">
-                    {this.renderSubTasks()}
-                </ul>
+
                 <span className="glyphicon glyphicon-plus"
                     //aria-hidden="true"
                       onClick={this.addSubtask}
                 ></span>
+
+                {this.props.subtasks.length>0 ? <SubTaskList subtasks={this.props.subtasks} taskId={this.props.task._id}/> : ""}
+
             </li>
         );
     },
@@ -96,15 +88,19 @@ Task = React.createClass({
     addSubtask(event) {
         event.preventDefault();
         console.log("adding subtask");
-        var _subtasks = this.state.subtasks;
+        var _subtasks = this.props.subtasks;
         var _key = 0;
-        var _maxKey = _.max(this.props.task.subtasks, function(subtask){return subtask.key;}).key +1;
-        if (_maxKey && _maxKey > 0 ){_key = _maxKey};
-        _subtasks.push({key: _key, subtask: "added subtask", checked:false});
+        var _maxKey = _.max(this.props.task.subtasks, function (subtask) {
+                return subtask.key;
+            }).key + 1;
+        if (_maxKey && _maxKey > 0) {
+            _key = _maxKey
+        }
+        ;
+        _subtasks.push({key: _key, subtask: "added subtask", checked: false});
         Tasks.update(this.props.task._id, {
             $set: {subtasks: _subtasks}
         });
-    }
-
+    },
 
 });

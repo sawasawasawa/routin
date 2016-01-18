@@ -3,7 +3,7 @@ SubTask = React.createClass({
     propTypes: {
         // This component gets the task to display through a React prop.
         // We can use propTypes to indicate it is required
-        //task: React.PropTypes.object.isRequired
+        subtask: React.PropTypes.object.isRequired
     },
 
     getInitialState() {
@@ -19,8 +19,6 @@ SubTask = React.createClass({
     },
 
     classIfChecked(){
-        console.log("props: ", this.props);
-        console.log("state: ", this.state);
         if (this.state.checked) {
             return " checked";
         }
@@ -70,10 +68,11 @@ SubTask = React.createClass({
     //
     toggleCheckedSubTask() {
         // Set the checked property to the opposite of its current value
-        var _wholeTask = Tasks.find(this.state.taskId).fetch();
+        console.log('toggle');
+        var _wholeTask = Tasks.find(this.props.taskId).fetch();
         var _subtasks = _wholeTask[0].subtasks;
-        var _checked = _.findWhere(_subtasks, {subtask: this.state.subtask}).checked;
-        _.findWhere(_subtasks, {myKey: this.props.myKey}).checked = !_checked;
+        var _checked = _.findWhere(_subtasks, {subtask: this.props.subtask}).checked;
+        _.findWhere(_subtasks, {key: this.props.myKey}).checked = !_checked;
         this.state.checked = !_checked;
         Tasks.update(this.state.taskId, {
             $set: {subtasks: _subtasks}
@@ -81,14 +80,15 @@ SubTask = React.createClass({
     },
 
     updateSubTask() {
-        var _wholeTask = Tasks.find(this.state.taskId).fetch();
+        var _wholeTask = Tasks.find(this.props.taskId).fetch();
         var _subtasks = _wholeTask[0].subtasks;
         var _text = this.state.subtask;
-        _.findWhere(_subtasks, {myKey: this.props.myKey}).subtask = _text;
+        _.findWhere(_subtasks, {key: this.props.myKey}).subtask = _text;
         Tasks.update(this.props.taskId, {
             $set: {subtasks: _subtasks}
         });
         _wholeTask = Tasks.find(this.state.taskId).fetch();
+        console.log(_wholeTask);
     },
 
     update(e){
@@ -97,13 +97,15 @@ SubTask = React.createClass({
 
     deleteSubTask(event){
         console.log('deleteing subtask...');
-        var _wholeTask = Tasks.find(this.state.taskId).fetch();
+        var _wholeTask = Tasks.find(this.props.taskId).fetch();
         var _subtasks = _wholeTask[0].subtasks;
         var _deletedTask = _.findWhere(_subtasks, {key: this.props.myKey});
         _subtasks = _.without(_subtasks, _deletedTask);
         Tasks.update(this.props.taskId, {
             $set: {subtasks: _subtasks}
         });
+        _wholeTask = Tasks.find(this.state.taskId).fetch();
+        console.log(_wholeTask);
 
     }
 

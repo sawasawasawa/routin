@@ -1,48 +1,52 @@
-.centered{
-    text-align:center;
-    margin-right:auto;
-    margin-left:auto;
-    padding:10px;
+.centered {
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 10px;
 }
 
 .delete-button {
 
     float: right;
-    left:3px;
+    left: 3px;
     font-weight: bold;
     background: white;
     font-size: 1em;
     /*position: relative;*/
-    border:none;
+    border: none;
 }
 
-.glyphicon-remove-circle{
-    top:8px;
+.glyphicon-remove-circle {
+    top: 8px;
     float: right;
-    left:7px ;
+    left: 7px;
     background: white;
     color: #888;
 }
 
-.main-container{
-    margin-right:auto;
-    margin-left:auto;
-    width:600px;
-    min-width:500px;}
+.main-container {
+    margin-right: auto;
+    margin-left: auto;
+    width: 600px;
+    min-width: 500px;
+}
 
 li {
     /*position: relative;*/
-    display:block;
+    display: block;
     list-style: none;
     padding: 15px;
     border-bottom: #eee solid 1px;
 }
 
-li>*{display:inline-block !important}
+li > * {
+    display: inline-block !important
+}
 
-li .task-text  {
+li .task-text {
     margin-left: 10px;
 }
+
 /*TODO*/
 /*li.checked {
     color: #888;
@@ -57,55 +61,56 @@ li.checked .task-text {
 }
 
 .date-control {
-    padding-top:10px;
-    max-width: 300px}
+    padding-top: 10px;
+    max-width: 300px
+}
 
-.dateChangeBtn{
-    max-width: 30px}
+.dateChangeBtn {
+    max-width: 30px
+}
 
 .navbar .navbar-nav {
     display: inline-block;
     float: none;
 }
 
-.navbar-brand{
-    height:60px;
+.navbar-brand {
+    height: 60px;
 }
 
 .navbar .navbar-collapse {
     text-align: center;
 }
 
-.navbar-right{
-    padding-top:10px
+.navbar-right {
+    padding-top: 10px
 }
 
-.copyUnchecked{
-    min-width:300px;
+.copyUnchecked {
+    min-width: 300px;
 }
-
 
 .checked {
     text-decoration: line-through;
 }
 
-
-.list-group-item .checked{
+.list-group-item .checked {
     background-color: lightgray;
 }
 
-.form-group{
-    width:97%;
+.form-group {
+    width: 97%;
 }
 
 .form-control, .task-text-input, .list-group-item {
-    max-width:100%;
-    padding-right:0px;
-    padding-left:10px;
-    padding-bottom:0px;
-    box-shadow:none;
+    max-width: 95%;
+    padding-right: 0px;
+    padding-left: 10px;
+    padding-bottom: 0px;
+    box-shadow: none;
 
 }
+
 /*.task-text-input{
     border-radius:0px;
     background: rgb(246, 246, 246);
@@ -116,14 +121,25 @@ li.checked .task-text {
     border-bottom: 2px dashed #888;
 }*/
 
-.checkbox{
-    top:-4px;
-    left:5px;
+.checkbox {
+    float:right;
+    /*float:left;*/
+    top: 0px;
+    left: -10px;
 }
 
 .task-text-input {
-    border:0px;
+    border: 0px;
 
 }
 
-.subtask {width:100%}
+.subtasks {
+    width: 100%;
+
+}
+
+.glyphicon-plus {
+   float:left;
+    top: -38px;
+    left: -40px
+}
