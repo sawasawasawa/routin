@@ -3,7 +3,7 @@ SubTask = React.createClass({
     propTypes: {
         // This component gets the task to display through a React prop.
         // We can use propTypes to indicate it is required
-        subtask: React.PropTypes.object.isRequired
+        subtask: React.PropTypes.string.isRequired
     },
 
     getInitialState() {
@@ -11,7 +11,7 @@ SubTask = React.createClass({
             this.props.checked = false
         }
         return {
-            myKey: this.props.myKey,
+            key: this.props.key,
             subtask: this.props.subtask,
             checked: this.props.checked,
             taskId: this.props.taskId,
@@ -31,17 +31,17 @@ SubTask = React.createClass({
     render() {
 
         return (
-            <li className={"form-group list-group-item subtask "+ this.classIfChecked()}>
-                <div className="checkbox">
+            <tr className={" "+ this.classIfChecked()}>
+                <td >
 
                     <input
                         type="checkbox"
                         checked={this.state.checked}
-                        onClick={this.toggleCheckedSubTask}
+                        onChange={this.toggleCheckedSubTask}
                     />
-                </div>
-                <form className="form-group">
-                    <input className={"form-control task-text-input "}
+                </td>
+                <td >
+                    <input className={"task-text-input subtask-text-input"}
                            type="text"
                            onChange={this.update}
                            value={this.state.subtask }
@@ -49,15 +49,16 @@ SubTask = React.createClass({
                            onBlur={this.updateSubTask}
                            onSubmit={this.updateSubTask}
                     />
-                </form>
+                </td>
 
-                <span className="glyphicon glyphicon-remove-circle"
-                      //aria-hidden="true"
+                <td className="glyphicon glyphicon-remove-circle subtask-remove"
+                      aria-hidden="true"
                       onClick={this.deleteSubTask}
-                ></span>
-            </li>
+                ></td>
+            </tr>
         );
     },
+//<tr className={"form-group list-group-item subtask "+ this.classIfChecked()}>
 
     // subtasks methods
 
@@ -71,7 +72,7 @@ SubTask = React.createClass({
         console.log('toggle');
         var _wholeTask = Tasks.find(this.props.taskId).fetch();
         var _subtasks = _wholeTask[0].subtasks;
-        var _checked = _.findWhere(_subtasks, {subtask: this.props.subtask}).checked;
+        var _checked = _.findWhere(_subtasks, {key: this.props.myKey}).checked;
         _.findWhere(_subtasks, {key: this.props.myKey}).checked = !_checked;
         this.state.checked = !_checked;
         Tasks.update(this.state.taskId, {

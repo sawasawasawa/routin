@@ -16,13 +16,7 @@
     border: none;
 }
 
-.glyphicon-remove-circle {
-    top: 8px;
-    float: right;
-    left: 7px;
-    background: white;
-    color: #888;
-}
+
 
 .main-container {
     margin-right: auto;
@@ -55,10 +49,17 @@ li .task-text {
 li.checked .task-text {
     text-decoration: line-through;
 }*/
-.checked {
+.checked > task > *,
+.checked > task {
     color: #888;
     text-decoration: line-through;
+    background-color: lightgray;
 }
+
+.subtask-checkbox{left:-40px}
+.subtask-text-input{left:-40px}
+.subtask-remove{right:30px}
+.task-text-input .subtask-text-input{width:calc(100%+60px)}
 
 .date-control {
     padding-top: 10px;
@@ -90,25 +91,22 @@ li.checked .task-text {
     min-width: 300px;
 }
 
-.checked {
-    text-decoration: line-through;
-}
+/*.form-group {*/
+    /*width: 97%;*/
+/*}*/
 
-.list-group-item .checked {
-    background-color: lightgray;
-}
-
-.form-group {
-    width: 97%;
-}
-
-.form-control, .task-text-input, .list-group-item {
-    max-width: 95%;
+/*.form-control, .list-group-item,*/
+.task-text-input {
+    width:100%;
     padding-right: 0px;
     padding-left: 10px;
     padding-bottom: 0px;
     box-shadow: none;
+    border:none;
 
+}
+.width80 {
+    width:80%;
 }
 
 /*.task-text-input{
@@ -121,25 +119,37 @@ li.checked .task-text {
     border-bottom: 2px dashed #888;
 }*/
 
-.checkbox {
-    float:right;
-    /*float:left;*/
-    top: 0px;
-    left: -10px;
-}
 
-.task-text-input {
-    border: 0px;
 
-}
+/*.task-text-input {*/
+    /*border: 0px;*/
+
+/*}*/
 
 .subtasks {
     width: 100%;
 
 }
 
-.glyphicon-plus {
-   float:left;
-    top: -38px;
-    left: -40px
-}
+/*.glyphicon-plus {*/
+   /*float:left;*/
+    /*top: -38px;*/
+    /*left: -40px*/
+/*}*/
+
+/*.checkbox {*/
+    /*float:right;*/
+    /*!*float:left;*!*/
+    /*top: 0px;*/
+    /*left: -10px;*/
+/*}*/
+
+
+
+/*.glyphicon-remove-circle {*/
+    /*top: 8px;*/
+    /*float: right;*/
+    /*left: 7px;*/
+    /*background: white;*/
+    /*color: #888;*/
+/*}*/

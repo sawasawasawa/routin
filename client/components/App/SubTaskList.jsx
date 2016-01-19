@@ -3,7 +3,7 @@ SubTaskList = React.createClass({
         return this.props.subtasks.map((subtask) => {
             console.log(subtask);
             return <SubTask myKey={subtask.key} subtask={subtask.subtask} checked={subtask.checked}
-                            taskId={this.props.taskId} />;
+                            taskId={this.props.taskId}/>;
         });
     },
 
@@ -14,9 +14,11 @@ SubTaskList = React.createClass({
         console.log(this.props);
         return (
 
-            <ul className="subtasks" >
-                {this.renderSubTasks()}
-            </ul>
+            <table className="subtasks">
+                <tbody>
+                    {this.renderSubTasks()}
+                </tbody>
+            </table>
 
 
         );
