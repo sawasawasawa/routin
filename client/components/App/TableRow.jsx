@@ -26,38 +26,51 @@ TableRow = React.createClass({
 
     render() {
         return (
+
             <tr className={this.classIfChecked()}>
-                <td >
+                <td className="width100">
+                    <table className="table">
+                        <tr className="width100">
+                            <td>
+                                <input
+                                    type="checkbox"
+                                    checked={this.props.task.checked}
+                                    onChange={this.toggleChecked}/>
 
-                    <input
-                        type="checkbox"
-                        checked={this.props.task.checked}
-                        onChange={this.toggleChecked}/>
+                            </td>
+                            <td ><i className="glyphicon glyphicon-plus"
+                                    aria-hidden="true"
+                                    onClick={this.addSubtask}
+                            ></i></td>
+                            <td className="width80">
+                                <input className="task-text-input"
+                                       type="text"
+                                       onChange={this.update}
+                                       value={this.state.text}
+                                       placeholder="Change task text or delete by clicking x on the right"
+                                       onBlur={this.updateTask}
+                                       onSubmit={this.updateTask}
+                                />
 
+
+                            </td>
+
+                            <td ><i className="glyphicon glyphicon-remove-circle"
+                                    aria-hidden="true"
+                                    onClick={this.deleteTask}
+                            ></i>
+                            </td>
+                        </tr>
+                        {this.props.subtasks.length>0 ?
+                        <tr className="width100">
+                            <td colspan="1"></td>
+                            <td colspan="5" className="width100">
+                            <SubTaskList subtasks={this.props.subtasks} taskId={this.props.task._id}/>
+                            </td>
+                        </tr> : ""
+                            }
+                    </table>
                 </td>
-                <td > <i className="glyphicon glyphicon-plus"
-                    aria-hidden="true"
-                    onClick={this.addSubtask}
-                ></i></td>
-                <td className="width80">
-                    <input className="task-text-input"
-                        type="text"
-                        onChange={this.update}
-                        value={this.state.text}
-                        placeholder="Change task text or delete by clicking x on the right"
-                        onBlur={this.updateTask}
-                        onSubmit={this.updateTask}
-                    />
-                    {this.props.subtasks.length>0 ?
-                        <SubTaskList subtasks={this.props.subtasks} taskId={this.props.task._id}/>
-                        : ""
-                    }
-                </td>
-
-                <td ><i className="glyphicon glyphicon-remove-circle"
-                    aria-hidden="true"
-                      onClick={this.deleteTask}
-                ></i></td>
             </tr>
         );
     },

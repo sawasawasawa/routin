@@ -34,7 +34,7 @@ SubTask = React.createClass({
             <tr className={" "+ this.classIfChecked()}>
                 <td >
 
-                    <input
+                    <input className="subtask-checkbox"
                         type="checkbox"
                         checked={this.state.checked}
                         onChange={this.toggleCheckedSubTask}

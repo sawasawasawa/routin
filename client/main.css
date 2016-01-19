@@ -153,3 +153,7 @@ li.checked .task-text {
     /*background: white;*/
     /*color: #888;*/
 /*}*/
+
+.width100{width:100%}
+
+td > .table > tbody > tr > td {border-top:0px}
