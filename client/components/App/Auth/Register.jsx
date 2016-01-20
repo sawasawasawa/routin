@@ -9,7 +9,7 @@ Register =React.createClass({
             username: email
         });
         console.log("zarejestrowano");
-        FlowRouter.go('/');
+        FlowRouter.go('/registerSuccess');
     },
     render(){
         return (

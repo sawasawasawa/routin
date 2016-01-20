@@ -155,5 +155,17 @@ li.checked .task-text {
 /*}*/
 
 .width100{width:100%}
+.streakInd{width:14%;
+background-color: lightblue;
+    border:3px;
+margin:5px;
+height:2px;}
 
 td > .table > tbody > tr > td {border-top:0px}
+
+.streakTable > tbody > tr > td {border-left:5px solid white;
+    border-right:5px solid white;
+padding:0;
+    height:5px !important;}
+
+.colorRed {background-color:red;}

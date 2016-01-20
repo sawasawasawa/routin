@@ -38,3 +38,13 @@ FlowRouter.route('/register', {
         })
     }
 });
+
+FlowRouter.route('/registerSuccess', {
+    name: 'RegisterSuccess',
+    action(){
+        ReactLayout.render(App, {
+            content: <RegisterSuccess name = "RegisterSuccess" />,
+            nav: <Nav />
+        })
+    }
+});

@@ -7,10 +7,16 @@ TaskList = React.createClass({
         Meteor.subscribe('tasks');
         console.log('LOG: TASKLIST getMeteorData displayedDate: ', Session.get("displayedDate"));
         return {
+            habits:Tasks.find({
+                        userId: Meteor.userId(),
+                        dueDate: moment(Session.get("displayedDate")).format("L"),
+                        cat: 'habit'
+                    }, {sort: {checked: 1}}).fetch(),
+
             dueTasks: Tasks.find({
-                userId: Meteor.userId(),
-                dueDate: moment(Session.get("displayedDate")).format("L")
-            }, {sort: {checked: 1}}).fetch()
+                        userId: Meteor.userId(),
+                        dueDate: moment(Session.get("displayedDate")).format("L")
+                    }, {sort: {checked: 1}}).fetch()
         }
     },
 
@@ -19,7 +25,11 @@ TaskList = React.createClass({
     //        return <Task key={task._id} task={task} subtasks={task.subtasks}/>;
     //    });
     //},
-
+    renderHabitsTable() {
+        return this.data.habits.map((task) => {
+            return <TableRow type = "habit" key={task._id} keyId={task._id} task={task} subtasks={task.subtasks}/>;
+        });
+    },
     renderTasksTable() {
         return this.data.dueTasks.map((task) => {
             return <TableRow key={task._id} keyId={task._id} task={task} subtasks={task.subtasks}/>;
@@ -60,14 +70,24 @@ TaskList = React.createClass({
         return (
             <div>
                 <div className="container-fluid main-container main-content">
-                    <TaskInput />
                     <div className="centered">
                         <button type="button" className="btn btn-primary btn-lg center" onClick={this.copyUnchecked}>
                             Copy unchecked tasks
                         </button>
                     </div>
                 </div>
+                <div>
+                    <h3>Habits</h3>
+                    <HabitInput />
+                    <table className="table">
+                        <tbody>
+                        {this.renderHabitsTable()}
+                        </tbody>
+                    </table>
+                </div>
                 <div className="table-responsive">
+                    <h3>Tasks</h3>
+                    <TaskInput />
                     <table className="table">
                         <tbody>
                         {this.renderTasksTable()}
