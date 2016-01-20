@@ -14,15 +14,15 @@ TaskList = React.createClass({
         }
     },
 
-    renderTasks() {
-        return this.data.dueTasks.map((task) => {
-            return <Task key={task._id} task={task} subtasks={task.subtasks}/>;
-        });
-    },
+    //renderTasks() {
+    //    return this.data.dueTasks.map((task) => {
+    //        return <Task key={task._id} task={task} subtasks={task.subtasks}/>;
+    //    });
+    //},
 
     renderTasksTable() {
         return this.data.dueTasks.map((task) => {
-            return <TableRow keyId={task._id} task={task} subtasks={task.subtasks}/>;
+            return <TableRow key={task._id} keyId={task._id} task={task} subtasks={task.subtasks}/>;
         });
     },
 

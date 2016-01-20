@@ -30,6 +30,7 @@ TableRow = React.createClass({
             <tr className={this.classIfChecked()}>
                 <td className="width100">
                     <table className="table">
+                        <tbody>
                         <tr className="width100">
                             <td>
                                 <input
@@ -63,12 +64,13 @@ TableRow = React.createClass({
                         </tr>
                         {this.props.subtasks.length>0 ?
                         <tr className="width100">
-                            <td colspan="1"></td>
-                            <td colspan="5" className="width100">
-                            <SubTaskList subtasks={this.props.subtasks} taskId={this.props.task._id}/>
+                            <td colSpan="1"></td>
+                            <td colSpan="5" className="width100">
+                                <SubTaskList subtasks={this.props.subtasks} taskId={this.props.task._id}/>
                             </td>
-                        </tr> : ""
+                        </tr> : false
                             }
+                        </tbody>
                     </table>
                 </td>
             </tr>
