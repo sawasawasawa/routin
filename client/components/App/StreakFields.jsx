@@ -7,7 +7,9 @@ StreakFields = React.createClass({
     },
 
     colorField(int){
-        if (this.props.streak[int] = 1) {
+        if (this.props.streak[int] == true) {
+            return " colorBlue";
+        } else {
             return " colorRed";
         }
     },
