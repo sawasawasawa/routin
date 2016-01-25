@@ -21,21 +21,17 @@ TaskList = React.createClass({
         }
     },
 
-    //renderTasks() {
-    //    return this.data.dueTasks.map((task) => {
-    //        return <Task key={task._id} task={task} subtasks={task.subtasks}/>;
-    //    });
-    //},
+
 
     renderHabitsTable() {
         return this.data.habits.map((task) => {
-            return <TableRow type="habit" key={task._id} keyId={task._id} task={task} subtasks={task.subtasks}/>;
+            return <HabitRow type="habit" key={task._id} keyId={task._id} task={task} subtasks={task.subtasks}/>;
         });
     },
 
     renderTasksTable() {
         return this.data.dueTasks.map((task) => {
-            return <TableRow key={task._id} keyId={task._id} task={task} subtasks={task.subtasks}/>;
+            return <TaskRow key={task._id} keyId={task._id} task={task} subtasks={task.subtasks}/>;
         });
     },
 
@@ -79,7 +75,7 @@ TaskList = React.createClass({
 
         _tasksToCopy.forEach(function (myDoc) {
             var copy = myDoc;
-            var _streak_arr = copy.streak_arr
+            var _streak_arr = copy.streak_arr;
             _streak_arr.push(copy.checked);
             _streak_arr.shift();
             Tasks.insert(
@@ -112,7 +108,7 @@ TaskList = React.createClass({
                 </div>
                 <div>
                     <h3>Habits</h3>
-                    <HabitInput />
+                    {this.data.habits.length <3 ? <HabitInput /> : null }
                     <table className="table">
                         <tbody>
                         {this.renderHabitsTable()}

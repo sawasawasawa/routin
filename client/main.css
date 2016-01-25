@@ -16,8 +16,6 @@
     border: none;
 }
 
-
-
 .main-container {
     margin-right: auto;
     margin-left: auto;
@@ -49,22 +47,32 @@ li .task-text {
 li.checked .task-text {
     text-decoration: line-through;
 }*/
-.checked >  *,
-.checked > * > * ,
+.checked > *,
+.checked > * > *,
 .checked > * > * > *,
 .checked > * > * > * > *,
 .checked > * > * > * > * > *,
-.checked > * > * > * > * > * > *
-{
+.checked > * > * > * > * > * > * {
     color: #888;
     text-decoration: line-through;
     background-color: #F8F8F8;;
 }
 
-.subtask-checkbox{left:-40px}
-.subtask-text-input{left:-40px}
-.subtask-remove{right:30px}
-.task-text-input .subtask-text-input{width:calc(100%+60px)}
+.subtask-checkbox {
+    left: -40px
+}
+
+.subtask-text-input {
+    left: -40px
+}
+
+.subtask-remove {
+    right: 30px
+}
+
+.task-text-input .subtask-text-input {
+    width: calc(100% + 60px)
+}
 
 .date-control {
     padding-top: 10px;
@@ -97,21 +105,22 @@ li.checked .task-text {
 }
 
 /*.form-group {*/
-    /*width: 97%;*/
+/*width: 97%;*/
 /*}*/
 
 /*.form-control, .list-group-item,*/
 .task-text-input {
-    width:100%;
+    width: 100%;
     padding-right: 0px;
     padding-left: 10px;
     padding-bottom: 0px;
     box-shadow: none;
-    border:none;
+    border: none;
 
 }
+
 .width80 {
-    width:80%;
+    width: 80%;
     padding:;
 }
 
@@ -125,10 +134,8 @@ li.checked .task-text {
     border-bottom: 2px dashed #888;
 }*/
 
-
-
 /*.task-text-input {*/
-    /*border: 0px;*/
+/*border: 0px;*/
 
 /*}*/
 
@@ -138,41 +145,66 @@ li.checked .task-text {
 }
 
 /*.glyphicon-plus {*/
-   /*float:left;*/
-    /*top: -38px;*/
-    /*left: -40px*/
+/*float:left;*/
+/*top: -38px;*/
+/*left: -40px*/
 /*}*/
 
 /*.checkbox {*/
-    /*float:right;*/
-    /*!*float:left;*!*/
-    /*top: 0px;*/
-    /*left: -10px;*/
+/*float:right;*/
+/*!*float:left;*!*/
+/*top: 0px;*/
+/*left: -10px;*/
 /*}*/
-
-
 
 /*.glyphicon-remove-circle {*/
-    /*top: 8px;*/
-    /*float: right;*/
-    /*left: 7px;*/
-    /*background: white;*/
-    /*color: #888;*/
+/*top: 8px;*/
+/*float: right;*/
+/*left: 7px;*/
+/*background: white;*/
+/*color: #888;*/
 /*}*/
 
-.width100{width:100%}
-.streakInd{width:14%;
-background-color: lightblue;
-    border:3px;
-margin:5px;
-height:2px;}
+.width100 {
+    width: 100%
+}
 
-td > .table > tbody > tr > td {border-top:0px}
+.streakInd {
+    width: 14%;
+    background-color: lightblue;
+    border: 3px;
+    margin: 5px;
+    height: 2px;
+}
 
-.streakTable > tbody > tr > td {border-left:5px solid white;
-    border-right:5px solid white;
-padding:0;
-    height:5px !important;}
+td > .table > tbody > tr > td {
+    border-top: 0px
+}
 
-.colorRed {background-color:red;}
-.colorBlue {background-color:blue;}
+.streakTable > tbody > tr > td {
+    border-left: 5px solid white;
+    border-right: 5px solid white;
+    padding: 0;
+    height: 5px !important;
+}
+
+.colorRed {
+    background-color: red;
+}
+
+.colorBlue {
+    background-color: blue;
+}
+
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+    padding: 8px 8px 0px 8px
+}
+
+.table {
+    margin-bottom:10px;
+}
