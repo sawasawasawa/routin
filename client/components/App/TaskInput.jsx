@@ -20,7 +20,7 @@ TaskInput = React.createClass({
                 userId: Meteor.userId(),
                 text: text,
                 createdAt: _date,
-                cat: "test",
+                cat: "task",
                 dueDate_first: _date,
                 dueDate: _date,
                 streak_arr: [0, 0, 0, 0, 0, 0, 0],

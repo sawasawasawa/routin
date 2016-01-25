@@ -49,11 +49,16 @@ li .task-text {
 li.checked .task-text {
     text-decoration: line-through;
 }*/
-.checked > task > *,
-.checked > task {
+.checked >  *,
+.checked > * > * ,
+.checked > * > * > *,
+.checked > * > * > * > *,
+.checked > * > * > * > * > *,
+.checked > * > * > * > * > * > *
+{
     color: #888;
     text-decoration: line-through;
-    background-color: lightgray;
+    background-color: #F8F8F8;;
 }
 
 .subtask-checkbox{left:-40px}
@@ -107,6 +112,7 @@ li.checked .task-text {
 }
 .width80 {
     width:80%;
+    padding:;
 }
 
 /*.task-text-input{
