@@ -1,7 +1,7 @@
 FlowRouter.route('/', {
     name: 'Dashboard',
     action() {
-        console.log("rendering Dashboard");
+        //console.log("rendering Dashboard");
         ReactLayout.render(App, {
             content: <TaskList />,
             nav: <Nav />

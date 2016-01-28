@@ -3,7 +3,7 @@ RegisterSuccess =React.createClass({
 
 
 routeHome(){
-    console.log('ELO');
+    //console.log('ELO');
     FlowRouter.go('/');
 },
 

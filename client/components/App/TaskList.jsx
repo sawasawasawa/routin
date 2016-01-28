@@ -5,7 +5,7 @@ TaskList = React.createClass({
     // Loads items from the Tasks collection and puts them on this.data.tasks
     getMeteorData() {
         Meteor.subscribe('tasks');
-        console.log('LOG: TASKLIST getMeteorData displayedDate: ', Session.get("displayedDate"));
+        //console.log('LOG: TASKLIST getMeteorData displayedDate: ', Session.get("displayedDate"));
         return {
             habits: Tasks.find({
                 userId: Meteor.userId(),

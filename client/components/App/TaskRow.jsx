@@ -51,6 +51,7 @@ TaskRow = React.createClass({
                                        placeholder="Change task text or delete by clicking x on the right"
                                        onBlur={this.updateTask}
                                        onSubmit={this.updateTask}
+                                       onKeyPress={this.handlePress}
                                 />
 
 
@@ -78,7 +79,14 @@ TaskRow = React.createClass({
         );
     },
 
+    handlePress(e){
+        if(e.which == 13)
+        {
+            document.activeElement.blur();
 
+        }
+
+    },
 
 
 
@@ -99,6 +107,7 @@ TaskRow = React.createClass({
     },
 
     updateTask() {
+        console.log('up');
         Tasks.update(this.props.task._id, {
             $set: {text: this.state.text}
         });
@@ -106,7 +115,7 @@ TaskRow = React.createClass({
 
     addSubtask(event) {
         event.preventDefault();
-        console.log("adding subtask");
+        //console.log("adding subtask");
         var _subtasks = this.props.subtasks;
         var _key = 0;
         var _maxKey = _.max(this.props.task.subtasks, function (subtask) {
@@ -116,10 +125,11 @@ TaskRow = React.createClass({
             _key = _maxKey
         }
         ;
-        _subtasks.push({key: _key, subtask: "added subtask", checked: false});
+        _subtasks.push({key: _key, subtask: "Subtask - click to edit text", checked: false});
         Tasks.update(this.props.task._id, {
             $set: {subtasks: _subtasks}
         });
+        console.log('added subtask');
     },
 
 });

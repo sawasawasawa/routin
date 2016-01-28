@@ -55,4 +55,3 @@ Nav = React.createClass({
     },
 })
 
-//<!-- <img class = "logo" src = "\img\logo.png" height="42"/> -->

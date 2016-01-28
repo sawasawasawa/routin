@@ -47,6 +47,7 @@ HabitRow = React.createClass({
                                        placeholder="Change task text or delete by clicking x on the right"
                                        onBlur={this.updateTask}
                                        onSubmit={this.updateTask}
+                                       onKeyPress={this.handlePress}
                                 />
 
 
@@ -66,7 +67,14 @@ HabitRow = React.createClass({
         );
     },
 
+    handlePress(e){
+        if(e.which == 13)
+        {
+            document.activeElement.blur();
 
+        }
+
+    },
 
 
 
@@ -90,24 +98,6 @@ HabitRow = React.createClass({
         Tasks.update(this.props.task._id, {
             $set: {text: this.state.text}
         });
-    },
-
-    addSubtask(event) {
-        event.preventDefault();
-        console.log("adding subtask");
-        var _subtasks = this.props.subtasks;
-        var _key = 0;
-        var _maxKey = _.max(this.props.task.subtasks, function (subtask) {
-                return subtask.key;
-            }).key + 1;
-        if (_maxKey && _maxKey > 0) {
-            _key = _maxKey
-        }
-        ;
-        _subtasks.push({key: _key, subtask: "added subtask", checked: false});
-        Tasks.update(this.props.task._id, {
-            $set: {subtasks: _subtasks}
-        });
-    },
+    }
 
 });
