@@ -79,8 +79,8 @@ li.checked .task-text {
     max-width: 300px
 }
 
-.dateChangeBtn {
-    max-width: 30px
+.dateChangeBtn > .button {
+    max-width: 30px !important
 }
 
 .navbar .navbar-nav {
@@ -104,11 +104,6 @@ li.checked .task-text {
     min-width: 300px;
 }
 
-/*.form-group {*/
-/*width: 97%;*/
-/*}*/
-
-/*.form-control, .list-group-item,*/
 .task-text-input {
     width: 100%;
     padding-right: 0px;
@@ -124,18 +119,6 @@ li.checked .task-text {
     padding:;
 }
 
-/*.task-text-input{
-    border-radius:0px;
-    background: rgb(246, 246, 246);
-    border-bottom: 2px dashed #888;
-}*/
-/*.list-group-item{
-    background: rgb(246, 246, 246);
-    border-bottom: 2px dashed #888;
-}*/
-
-/*.task-text-input {*/
-/*border: 0px;*/
 
 /*}*/
 
@@ -144,26 +127,6 @@ li.checked .task-text {
 
 }
 
-/*.glyphicon-plus {*/
-/*float:left;*/
-/*top: -38px;*/
-/*left: -40px*/
-/*}*/
-
-/*.checkbox {*/
-/*float:right;*/
-/*!*float:left;*!*/
-/*top: 0px;*/
-/*left: -10px;*/
-/*}*/
-
-/*.glyphicon-remove-circle {*/
-/*top: 8px;*/
-/*float: right;*/
-/*left: 7px;*/
-/*background: white;*/
-/*color: #888;*/
-/*}*/
 
 .width100 {
     width: 100%
@@ -208,3 +171,4 @@ td > .table > tbody > tr > td {
 .table {
     margin-bottom:10px;
 }
+
