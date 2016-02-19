@@ -1,7 +1,7 @@
 FlowRouter.route('/', {
     name: 'Dashboard',
     action() {
-        console.log("rendering Dashboard");
+        //console.log("rendering Dashboard");
         ReactLayout.render(App, {
             content: <TaskList />,
             nav: <Nav />
@@ -34,6 +34,16 @@ FlowRouter.route('/register', {
     action(){
         ReactLayout.render(App, {
             content: <Register name = "Register" />,
+            nav: <Nav />
+        })
+    }
+});
+
+FlowRouter.route('/registerSuccess', {
+    name: 'RegisterSuccess',
+    action(){
+        ReactLayout.render(App, {
+            content: <RegisterSuccess name = "RegisterSuccess" />,
             nav: <Nav />
         })
     }

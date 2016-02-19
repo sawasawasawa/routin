@@ -1,48 +1,44 @@
-.centered{
-    text-align:center;
-    margin-right:auto;
-    margin-left:auto;
-    padding:10px;
+.centered {
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 10px;
 }
 
 .delete-button {
 
     float: right;
-    left:3px;
+    left: 3px;
     font-weight: bold;
     background: white;
     font-size: 1em;
     /*position: relative;*/
-    border:none;
+    border: none;
 }
 
-.glyphicon-remove-circle{
-    top:8px;
-    float: right;
-    left:7px ;
-    background: white;
-    color: #888;
+.main-container {
+    margin-right: auto;
+    margin-left: auto;
+    width: 600px;
+    min-width: 500px;
 }
-
-.main-container{
-    margin-right:auto;
-    margin-left:auto;
-    width:600px;
-    min-width:500px;}
 
 li {
     /*position: relative;*/
-    display:block;
+    display: block;
     list-style: none;
     padding: 15px;
     border-bottom: #eee solid 1px;
 }
 
-li>*{display:inline-block !important}
+li > * {
+    display: inline-block !important
+}
 
-li .task-text  {
+li .task-text {
     margin-left: 10px;
 }
+
 /*TODO*/
 /*li.checked {
     color: #888;
@@ -51,61 +47,83 @@ li .task-text  {
 li.checked .task-text {
     text-decoration: line-through;
 }*/
-.checked {
+.checked > *,
+.checked > * > *,
+.checked > * > * > *,
+.checked > * > * > * > *,
+.checked > * > * > * > * > *,
+.checked > * > * > * > * > * > * {
     color: #888;
     text-decoration: line-through;
+    background-color: #F8F8F8;;
+}
+
+.subtask-checkbox {
+    left: -40px
+}
+
+.subtask-text-input {
+    left: -40px
+}
+
+.subtask-remove {
+    right: 30px
+}
+
+.task-text-input .subtask-text-input {
+    width: calc(100% + 60px)
 }
 
 .date-control {
-    padding-top:10px;
-    max-width: 300px}
+    padding-top: 10px;
+    max-width: 300px
+}
 
-.dateChangeBtn{
-    max-width: 30px}
+.dateChangeBtn {
+    max-width: 30px
+}
 
 .navbar .navbar-nav {
     display: inline-block;
     float: none;
 }
 
-.navbar-brand{
-    height:60px;
+.navbar-brand {
+    height: 60px;
 }
 
 .navbar .navbar-collapse {
     text-align: center;
 }
 
-.navbar-right{
-    padding-top:10px
+.navbar-right {
+    padding-top: 10px
 }
 
-.copyUnchecked{
-    min-width:300px;
+.copyUnchecked {
+    min-width: 300px;
 }
 
+/*.form-group {*/
+/*width: 97%;*/
+/*}*/
 
-.checked {
-    text-decoration: line-through;
-}
-
-
-.list-group-item .checked{
-    background-color: lightgray;
-}
-
-.form-group{
-    width:97%;
-}
-
-.form-control, .task-text-input, .list-group-item {
-    max-width:100%;
-    padding-right:0px;
-    padding-left:10px;
-    padding-bottom:0px;
-    box-shadow:none;
+/*.form-control, .list-group-item,*/
+.task-text-input {
+    width: 100%;
+    padding-right: 0px;
+    padding-left: 10px;
+    padding-bottom: 0px;
+    box-shadow: none;
+    border: none;
 
 }
+
+.width80 {
+    width: 80%;
+    padding:;
+}
+
 /*.task-text-input{
     border-radius:0px;
     background: rgb(246, 246, 246);
@@ -116,12 +134,77 @@ li.checked .task-text {
     border-bottom: 2px dashed #888;
 }*/
 
-.checkbox{
-    top:-4px;
-    left:5px;
+/*.task-text-input {*/
+/*border: 0px;*/
+
+/*}*/
+
+.subtasks {
+    width: 100%;
+
 }
 
-.task-text-input {
-    border:0px;
+/*.glyphicon-plus {*/
+/*float:left;*/
+/*top: -38px;*/
+/*left: -40px*/
+/*}*/
 
+/*.checkbox {*/
+/*float:right;*/
+/*!*float:left;*!*/
+/*top: 0px;*/
+/*left: -10px;*/
+/*}*/
+
+/*.glyphicon-remove-circle {*/
+/*top: 8px;*/
+/*float: right;*/
+/*left: 7px;*/
+/*background: white;*/
+/*color: #888;*/
+/*}*/
+
+.width100 {
+    width: 100%
+}
+
+.streakInd {
+    width: 14%;
+    background-color: lightblue;
+    border: 3px;
+    margin: 5px;
+    height: 2px;
+}
+
+td > .table > tbody > tr > td {
+    border-top: 0px
+}
+
+.streakTable > tbody > tr > td {
+    border-left: 5px solid white;
+    border-right: 5px solid white;
+    padding: 0;
+    height: 5px !important;
+}
+
+.colorRed {
+    background-color: red;
+}
+
+.colorBlue {
+    background-color: blue;
+}
+
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+    padding: 8px 8px 0px 8px
+}
+
+.table {
+    margin-bottom:10px;
 }

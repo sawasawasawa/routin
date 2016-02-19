@@ -2,7 +2,7 @@
 DateControl = React.createClass({
 
     getInitialState() {
-        console.log("LOG: getInitialState session.get(displayedDate): ", Session.get("displayedDate"));
+        //console.log("LOG: getInitialState session.get(displayedDate): ", Session.get("displayedDate"));
         return {
             displayedDate: Session.get("displayedDate")
         }
@@ -45,12 +45,12 @@ DateControl = React.createClass({
         Session.set("displayedDate", moment(_nextDate)._d);
 
         //var _nextDate = moment(this.state.displayedDate).add(-1, 'days');
-        //console.log("LOG: DATECONTROL displayedDatePrev this.state.displayedDate", moment(this.state.displayedDate).format("L"));
+        ////console.log("LOG: DATECONTROL displayedDatePrev this.state.displayedDate", moment(this.state.displayedDate).format("L"));
         //this.setState({displayedDate: _nextDate});
-        //console.log("LOG: DATECONTROL displayedDatePrev this.state.displayedDate", moment(this.state.displayedDate).format("L"));
-        //console.log("LOG: DATECONTROL displayedDatePrev sessionGet displayedDate", moment(Session.get("displayedDate")).format("L"));
-        //console.log("LOG: DATECONTROL displayedDatePrev _nextDate", _nextDate);
+        ////console.log("LOG: DATECONTROL displayedDatePrev this.state.displayedDate", moment(this.state.displayedDate).format("L"));
+        ////console.log("LOG: DATECONTROL displayedDatePrev sessionGet displayedDate", moment(Session.get("displayedDate")).format("L"));
+        ////console.log("LOG: DATECONTROL displayedDatePrev _nextDate", _nextDate);
         //Session.set("displayedDate", moment(_nextDate)._d);
-        //console.log("LOG: DATECONTROL displayedDatePrev sessionGet displayedDate", moment(Session.get("displayedDate")).format("L"));
+        ////console.log("LOG: DATECONTROL displayedDatePrev sessionGet displayedDate", moment(Session.get("displayedDate")).format("L"));
     }
 });

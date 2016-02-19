@@ -8,8 +8,8 @@ Register =React.createClass({
             password: password,
             username: email
         });
-        console.log("zarejestrowano");
-        FlowRouter.go('/');
+        //console.log("zarejestrowano");
+        FlowRouter.go('/registerSuccess');
     },
     render(){
         return (

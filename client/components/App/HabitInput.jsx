@@ -1,11 +1,11 @@
-TaskInput = React.createClass({
+HabitInput = React.createClass({
     render(){
         return (
             <form className="new-task" onSubmit={this.handleSubmit}>
                 <input className="form-control"
                        type="text"
                        ref="textInput"
-                       placeholder="Type to add new tasks"/>
+                       placeholder="Type to add new habit to track"/>
             </form>
         )
     },
@@ -20,7 +20,7 @@ TaskInput = React.createClass({
                 userId: Meteor.userId(),
                 text: text,
                 createdAt: _date,
-                cat: "task",
+                cat: "habit",
                 dueDate_first: _date,
                 dueDate: _date,
                 streak_arr: [0, 0, 0, 0, 0, 0, 0],
@@ -36,4 +36,3 @@ TaskInput = React.createClass({
         React.findDOMNode(this.refs.textInput).value = "";
     }
 });
-
