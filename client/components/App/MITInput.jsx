@@ -1,4 +1,4 @@
-HabitInput = React.createClass({
+MITInput = React.createClass({
     render(){
         return (
             <form className="new-task" onSubmit={this.handleSubmit}>
@@ -20,7 +20,7 @@ HabitInput = React.createClass({
                 userId: Meteor.userId(),
                 text: text,
                 createdAt: _date,
-                cat: "habit",
+                cat: "mit",
                 dueDate_first: _date,
                 dueDate: _date,
                 streak_arr: [0, 0, 0, 0, 0, 0, 0],

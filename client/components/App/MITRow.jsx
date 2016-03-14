@@ -1,4 +1,4 @@
-HabitRow = React.createClass({
+MITRow = React.createClass({
     propTypes: {
         // This component gets the task to display through a React prop.
         // We can use propTypes to indicate it is required
@@ -39,6 +39,10 @@ HabitRow = React.createClass({
                                     onChange={this.toggleChecked}/>
 
                             </td>
+                            <td ><i className="glyphicon glyphicon-plus"
+                                    aria-hidden="true"
+                                    onClick={this.addSubtask}
+                            ></i></td>
                             <td className="width80">
                                 <input className="task-text-input"
                                        type="text"
@@ -59,7 +63,14 @@ HabitRow = React.createClass({
                             ></i>
                             </td>
                         </tr>
-                        <StreakFields streak={this.props.task.streak_arr}/>
+                        {this.props.subtasks.length>0 &&  this.props.type != "habit" ?
+                        <tr className="width100">
+                            <td colSpan="1"></td>
+                            <td colSpan="5" className="width100">
+                                <SubTaskList subtasks={this.props.subtasks} taskId={this.props.task._id}/>
+                            </td>
+                        </tr> : false
+                            }
                    </tbody>
                     </table>
                 </td>

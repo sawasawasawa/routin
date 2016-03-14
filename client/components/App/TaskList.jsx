@@ -13,6 +13,12 @@ TaskList = React.createClass({
                 cat: 'habit'
             }, {sort: {checked: 1}}).fetch(),
 
+            mit: Tasks.find({
+                userId: Meteor.userId(),
+                dueDate: moment(Session.get("displayedDate")).format("L"),
+                cat: 'mit'
+            }, {sort: {checked: 1}}).fetch(),
+
             dueTasks: Tasks.find({
                 userId: Meteor.userId(),
                 cat: 'task',
@@ -21,7 +27,11 @@ TaskList = React.createClass({
         }
     },
 
-
+    renderMITTable() {
+        return this.data.mit.map((task) => {
+            return <MITRow type="mit" key={task._id} keyId={task._id} task={task} subtasks={task.subtasks}/>;
+        });
+    },
 
     renderHabitsTable() {
         return this.data.habits.map((task) => {
@@ -45,6 +55,8 @@ TaskList = React.createClass({
         }).fetch();
 
         this.copyHabits();
+
+        this.copyMIT();
 
         _tasksToCopy.forEach(function (myDoc) {
             var copy = myDoc;
@@ -96,6 +108,36 @@ TaskList = React.createClass({
         });
     },
 
+    copyMIT(){
+        var _tasksToCopy = Tasks.find({
+            cat: 'mit',
+            userId: Meteor.userId(),
+            dueDate: moment(Session.get("displayedDate")).format("L")
+        }).fetch();
+
+        _tasksToCopy.forEach(function (myDoc) {
+            var copy = myDoc;
+            var _streak_arr = copy.streak_arr;
+            _streak_arr.push(copy.checked);
+            _streak_arr.shift();
+            Tasks.insert(
+                {
+                    userId: Meteor.userId(),
+                    text: copy.text,
+                    createdAt: copy.createdAt,
+                    cat: copy.cat,
+                    dueDate_first: copy.dueDate_first,
+                    dueDate: moment(copy.dueDate).add(1, 'days').format("L"),
+                    streak_arr: _streak_arr,
+                    username: copy.username,
+                    checked: false,
+                    subtasks: copy.subtasks
+                }
+            );
+
+        });
+    },
+
     render() {
         return (
             <div>
@@ -112,6 +154,15 @@ TaskList = React.createClass({
                     <table className="table">
                         <tbody>
                         {this.renderHabitsTable()}
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <h3>Most Important Tasks</h3>
+                    {this.data.mit.length <3 ? <MITInput /> : null }
+                    <table className="table">
+                        <tbody>
+                        {this.renderMITTable()}
                         </tbody>
                     </table>
                 </div>

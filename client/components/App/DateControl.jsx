@@ -6,10 +6,14 @@ DateControl = React.createClass({
             displayedDate: Session.get("displayedDate")
         }
     },
-
-
-    test(){
-        $("#datetimepicker2").datepicker();
+    componentDidMount(){
+        console.log('PINGWIN: Session.get("displayedDate")', Session.get("displayedDate"));
+        d = Session.get("displayedDate");
+        console.log('PINGWIN: moment(d)', moment(d));
+        console.log('PINGWIN: d', d);
+        $('#datetimepicker').datetimepicker({
+            format:'DD/MM/YYYY'
+        });
     },
 
     render(){
@@ -24,15 +28,13 @@ DateControl = React.createClass({
                 </div>
                 <div className="btn-group" role="group">
 
-                        <div className='input-group date' id='datetimepicker1' onClick={this.test}>
+                        <div className='input-group date' >
                             <input type='text'
-                                   id='datetimepicker2'
                                    className="form-control"
                                    value={moment(Session.get("displayedDate")).format("DD/MM/YYYY")}
+
                             />
-                                                <span className="input-group-addon">
-                                                    <span className="glyphicon glyphicon-calendar"></span>
-                                                </span>
+                                                
                         </div>
 
 
