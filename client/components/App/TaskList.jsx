@@ -110,10 +110,13 @@ TaskList = React.createClass({
 
     copyMIT(){
         var _tasksToCopy = Tasks.find({
+            checked: false,
             cat: 'mit',
             userId: Meteor.userId(),
             dueDate: moment(Session.get("displayedDate")).format("L")
         }).fetch();
+
+
 
         _tasksToCopy.forEach(function (myDoc) {
             var copy = myDoc;

@@ -7,13 +7,13 @@ DateControl = React.createClass({
         }
     },
     componentDidMount(){
-        console.log('PINGWIN: Session.get("displayedDate")', Session.get("displayedDate"));
-        d = Session.get("displayedDate");
-        console.log('PINGWIN: moment(d)', moment(d));
-        console.log('PINGWIN: d', d);
-        $('#datetimepicker').datetimepicker({
-            format:'DD/MM/YYYY'
-        });
+        //console.log('PINGWIN: Session.get("displayedDate")', Session.get("displayedDate"));
+        //d = Session.get("displayedDate");
+        //console.log('PINGWIN: moment(d)', moment(d));
+        //console.log('PINGWIN: d', d);
+        //$('#datetimepicker').datetimepicker({
+        //    format:'DD/MM/YYYY'
+        //});
     },
 
     render(){
@@ -32,7 +32,7 @@ DateControl = React.createClass({
                             <input type='text'
                                    className="form-control"
                                    value={moment(Session.get("displayedDate")).format("DD/MM/YYYY")}
-
+                                   readOnly
                             />
                                                 
                         </div>
