@@ -31,7 +31,7 @@ DateControl = React.createClass({
                         <div className='input-group date' >
                             <input type='text'
                                    className="form-control"
-                                   value={moment(Session.get("displayedDate")).format("DD/MM/YYYY")}
+                                   value={moment(Session.get("displayedDate")).format("ddd, DD MMM")}
                                    readOnly
                             />
                                                 
