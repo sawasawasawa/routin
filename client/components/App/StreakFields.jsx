@@ -15,23 +15,16 @@ StreakFields = React.createClass({
     },
 
     render(){
-        return (<tr className="width100">
-                <td colSpan="4">
-                    <table className="table streakTable">
-                        <tbody>
-                        <tr colSpan="7">
-                            <td className={"streakInd" + this.colorField(0)}></td>
-                            <td className={"streakInd" + this.colorField(1)}></td>
-                            <td className={"streakInd" + this.colorField(2)}></td>
-                            <td className={"streakInd" + this.colorField(3)}></td>
-                            <td className={"streakInd" + this.colorField(4)}></td>
-                            <td className={"streakInd" + this.colorField(5)}></td>
-                            <td className={"streakInd" + this.colorField(6)}></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
+        return (<td className="streakFields">
+                            <div className={"streakInd" + this.colorField(0)}></div>
+                            <div className={"streakInd" + this.colorField(1)}></div>
+                            <div className={"streakInd" + this.colorField(2)}></div>
+                            <div className={"streakInd" + this.colorField(3)}></div>
+                            <div className={"streakInd" + this.colorField(4)}></div>
+                            <div className={"streakInd" + this.colorField(5)}></div>
+                            <div className={"streakInd" + this.colorField(6)}></div>
+
+            </td>
         );
     }
 })

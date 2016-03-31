@@ -39,7 +39,7 @@ HabitRow = React.createClass({
                                     onChange={this.toggleChecked}/>
 
                             </td>
-                            <td className="width80">
+                            <td >
                                 <input className="task-text-input"
                                        type="text"
                                        onChange={this.update}
@@ -52,14 +52,14 @@ HabitRow = React.createClass({
 
 
                             </td>
-
+                            <StreakFields streak={this.props.task.streak_arr}/>
                             <td ><i className="glyphicon glyphicon-remove-circle"
                                     aria-hidden="true"
                                     onClick={this.deleteTask}
                             ></i>
                             </td>
                         </tr>
-                        <StreakFields streak={this.props.task.streak_arr}/>
+
                    </tbody>
                     </table>
                 </td>

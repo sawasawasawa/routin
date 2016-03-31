@@ -133,12 +133,14 @@ li.checked .task-text {
     width: 100%
 }
 
+.streakFields{ display: inline-block;}
+.streakFields> .streakInd { display: inline-block;}
 .streakInd {
-    width: 14%;
+    width: 15px;
     background-color: lightblue;
-    border: 3px;
-    margin: 5px;
-    height: 2px;
+    border: 1px solid lightgray;
+    margin:2px;
+    height: 10px;
 }
 
 td > .table > tbody > tr > td {

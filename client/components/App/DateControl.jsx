@@ -18,7 +18,7 @@ DateControl = React.createClass({
 
     render(){
         return (
-            <div className="btn-group btn-group-justified date-control pagination-centered"
+            <div className="btn-group  date-control pagination-centered"
                  role="group" aria-label="...">
                 <div className="btn-group dateChangeBtn">
                     <button type="button" className="btn btn-default"
