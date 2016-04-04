@@ -24,3 +24,4 @@ twbs:bootstrap
 momentjs:moment
 accounts-password
 msavin:mongol
+rajit:bootstrap3-datepicker

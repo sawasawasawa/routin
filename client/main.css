@@ -133,6 +133,8 @@ li.checked .task-text {
     width: 100%
 }
 
+#datepicker{text-align: center}
+
 .streakFields{ display: inline-block;}
 .streakFields> .streakInd { display: inline-block;}
 .streakInd {

@@ -7,13 +7,22 @@ DateControl = React.createClass({
         }
     },
     componentDidMount(){
-        //console.log('PINGWIN: Session.get("displayedDate")', Session.get("displayedDate"));
-        //d = Session.get("displayedDate");
-        //console.log('PINGWIN: moment(d)', moment(d));
-        //console.log('PINGWIN: d', d);
-        //$('#datetimepicker').datetimepicker({
-        //    format:'DD/MM/YYYY'
-        //});
+        console.log('PINGWIN: Session.get("displayedDate")', Session.get("displayedDate"));
+        d = Session.get("displayedDate");
+        console.log('PINGWIN: moment(d)', moment(d));
+        console.log('PINGWIN: d', d);
+        $('#datepicker').datepicker({
+            //defaultViewDate: {year:moment(d).year(), month:moment(d).month(), day:moment(d).day},
+            format: "D, dd M",
+            autoclose: true,
+            todayHighlight: true,
+            //toggleActive: true
+        }).on('changeDate', function(e) {
+            console.log('PINGWIN: e', e);
+            Session.set("displayedDate", moment(e.date)._d);
+            console.log('chjanged')
+        });
+
     },
 
     render(){
@@ -28,17 +37,17 @@ DateControl = React.createClass({
                 </div>
                 <div className="btn-group" role="group">
 
-                        <div className='input-group date' >
-                            <input type='text'
-                                   className="form-control"
-                                   value={moment(Session.get("displayedDate")).format("ddd, DD MMM")}
-                                   readOnly
-                            />
-                                                
-                        </div>
 
 
+                    <div className='input-group date' >
+                        <input type='text'
+                               className="form-control"
+                               styleName="text-align:center"
+                               id="datepicker"
+                               value={moment(Session.get("displayedDate")).format("ddd, DD MMM")}
 
+                        />
+                    </div>
                 </div>
                 <div className="btn-group dateChangeBtn" role="group">
                     <button type="button" className="btn btn-default "
