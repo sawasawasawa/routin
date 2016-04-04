@@ -154,7 +154,7 @@ TaskList = React.createClass({
                 <div>
                     <h3>Habits</h3>
                     {this.data.habits.length <3 ? <HabitInput /> : null }
-                    <table className="table">
+                    <table className="table habit-table">
                         <tbody>
                         {this.renderHabitsTable()}
                         </tbody>
@@ -163,7 +163,7 @@ TaskList = React.createClass({
                 <div>
                     <h3>Most Important Tasks</h3>
                     {this.data.mit.length <3 ? <MITInput /> : null }
-                    <table className="table">
+                    <table className="table mit-table">
                         <tbody>
                         {this.renderMITTable()}
                         </tbody>
@@ -172,7 +172,7 @@ TaskList = React.createClass({
                 <div className="table-responsive">
                     <h3>Tasks</h3>
                     <TaskInput />
-                    <table className="table">
+                    <table className="table task-table">
                         <tbody>
                         {this.renderTasksTable()}
                         </tbody>

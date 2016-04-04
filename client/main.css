@@ -139,8 +139,8 @@ li.checked .task-text {
     width: 15px;
     background-color: lightblue;
     border: 1px solid lightgray;
-    margin:2px;
-    height: 10px;
+    margin:1px;
+    height: 15px;
 }
 
 td > .table > tbody > tr > td {
@@ -162,17 +162,21 @@ td > .table > tbody > tr > td {
     background-color: blue;
 }
 
-.table > thead > tr > th,
-.table > tbody > tr > th,
-.table > tfoot > tr > th,
-.table > thead > tr > td,
-.table > tbody > tr > td,
-.table > tfoot > tr > td {
-    padding: 8px 8px 0px 8px
+.mit-table > thead > tr > th,
+.mit-table > tbody > tr > th,
+.mit-table > tfoot > tr > th,
+.mit-table > thead > tr > td,
+.mit-table > tbody > tr > td,
+.mit-table > tfoot > tr > td {
+    padding: 8px 8px 0px 8px;
+}
+
+.habit-table > tbody > tr > td {
+    padding: 1px 8px 1px 8px !important;
 }
 
 .table {
-    margin-bottom:10px;
+    margin-bottom:0px;
 }
 
 .new-task{max-width:100%}
