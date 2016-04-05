@@ -17,7 +17,7 @@ DateControl = React.createClass({
             autoclose: true,
             todayHighlight: true,
             //toggleActive: true
-        }).on('changeDate', function(e) {
+        }).on('changeDate', function (e) {
             console.log('PINGWIN: e', e);
             Session.set("displayedDate", moment(e.date)._d);
             console.log('chjanged')
@@ -38,14 +38,13 @@ DateControl = React.createClass({
                 <div className="btn-group" role="group">
 
 
-
-                    <div className='input-group date' >
+                    <div className='input-group date'>
                         <input type='text'
                                className="form-control"
                                styleName="text-align:center"
                                id="datepicker"
                                value={moment(Session.get("displayedDate")).format("ddd, DD MMM")}
-
+                               readOnly
                         />
                     </div>
                 </div>
