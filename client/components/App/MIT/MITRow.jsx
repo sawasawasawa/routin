@@ -109,6 +109,24 @@ MITRow = React.createClass({
         Tasks.update(this.props.task._id, {
             $set: {text: this.state.text}
         });
+    },
+    addSubtask(event) {
+        event.preventDefault();
+        //console.log("adding subtask");
+        var _subtasks = this.props.subtasks;
+        var _key = 0;
+        var _maxKey = _.max(this.props.task.subtasks, function (subtask) {
+                return subtask.key;
+            }).key + 1;
+        if (_maxKey && _maxKey > 0) {
+            _key = _maxKey
+        }
+        ;
+        _subtasks.push({key: _key, subtask: "Subtask - click to edit text", checked: false});
+        Tasks.update(this.props.task._id, {
+            $set: {subtasks: _subtasks}
+        });
+        console.log('added subtask');
     }
 
 });

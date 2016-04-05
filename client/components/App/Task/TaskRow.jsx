@@ -130,6 +130,6 @@ TaskRow = React.createClass({
             $set: {subtasks: _subtasks}
         });
         console.log('added subtask');
-    },
+    }
 
 });
