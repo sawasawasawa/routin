@@ -153,7 +153,7 @@ TaskList = React.createClass({
                 </div>
                 <div>
                     <h3>Habits</h3>
-                    {this.data.habits.length <3 ? <HabitInput /> : null }
+                    {this.data.habits.length <7 ? <HabitInput /> : null }
                     <table className="table habit-table">
                         <tbody>
                         {this.renderHabitsTable()}

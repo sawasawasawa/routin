@@ -63,7 +63,6 @@ TaskRow = React.createClass({
                             ></i>
                             </td>
                         </tr>
-                        {this.props.type === "habit" ? <StreakFields streak={this.props.task.streak_arr}/> : false }
                         {this.props.subtasks.length>0 &&  this.props.type != "habit" ?
                         <tr className="width100">
                             <td colSpan="1"></td>
