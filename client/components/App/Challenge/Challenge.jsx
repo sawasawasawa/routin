@@ -9,9 +9,9 @@ Challenge = React.createClass({
 
     render(){
         return (
-            <div styleName="width100">
+            <div className="width100">
                 <h3>30 day challenge</h3>
-                <div styleName="width100">
+                <div className="challenge width100">
                     <input
                         type="checkbox"
                         checked={this.props.checked}

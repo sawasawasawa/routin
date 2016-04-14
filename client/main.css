@@ -233,3 +233,4 @@ tr:first-child {
     }
 
 }
+.challenge > *{display: inline-block}
