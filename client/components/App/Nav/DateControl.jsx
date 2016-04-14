@@ -1,16 +1,12 @@
 DateControl = React.createClass({
 
     getInitialState() {
-        //console.log("LOG: getInitialState session.get(displayedDate): ", Session.get("displayedDate"));
         return {
             displayedDate: Session.get("displayedDate")
         }
     },
     componentDidMount(){
-        console.log('PINGWIN: Session.get("displayedDate")', Session.get("displayedDate"));
         d = Session.get("displayedDate");
-        console.log('PINGWIN: moment(d)', moment(d));
-        console.log('PINGWIN: d', d);
         $('#datepicker').datepicker({
             //defaultViewDate: {year:moment(d).year(), month:moment(d).month(), day:moment(d).day},
             format: "D, dd M",
@@ -18,9 +14,7 @@ DateControl = React.createClass({
             todayHighlight: true,
             //toggleActive: true
         }).on('changeDate', function (e) {
-            console.log('PINGWIN: e', e);
             Session.set("displayedDate", moment(e.date)._d);
-            console.log('chjanged')
         });
 
     },

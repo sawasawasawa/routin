@@ -1,39 +1,25 @@
-ChallengeInput= React.createClass({
-    render(){
-        return (
-            <form className="new-task" onSubmit={this.handleSubmit}>
-                <input className="form-control"
-                       type="text"
-                       ref="textInput"
-                       placeholder="Type to set yourself a 30 day challenge"/>
-            </form>
-        )
+Challenge = React.createClass({
+
+    toggleChecked() {
+        // Set the checked property to the opposite of its current value
+        Tasks.update(this.props.id, {
+            $set: {checked: !this.props.checked}
+        });
     },
 
-    handleSubmit(event){
-        event.preventDefault();
-        var text = React.findDOMNode(this.refs.textInput).value.trim();
-        var _date = moment(Session.get("displayedDate")).format("L")
-
-        Tasks.insert(
-            {
-                userId: Meteor.userId(),
-                text: text,
-                createdAt: _date,
-                cat: "challenge",
-                dueDate_first: _date,
-                dueDate: _date,
-                streak_arr: [0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0,0,0],
-                username: Meteor.user().emails[0]["address"],
-                checked: false,
-                subtasks: [
-
-                ]
-
-
-            }
-        );
-        React.findDOMNode(this.refs.textInput).value = "";
+    render(){
+        return (
+            <div styleName="width100">
+                <h3>30 day challenge</h3>
+                <div styleName="width100">
+                    <input
+                        type="checkbox"
+                        checked={this.props.checked}
+                        onChange={this.toggleChecked}/>
+                    <div>{this.props.text}</div>
+                </div>
+            </div>
+        )
     }
 });
 

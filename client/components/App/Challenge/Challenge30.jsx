@@ -16,11 +16,12 @@ Challenge30= React.createClass({
 
 
     render() {
-        console.log('PINGWIN: this.data.challenge.length', this.data.challenge.length);
-        console.log('PINGWIN: this.data', this.data);
+        console.log('PINGWIN: this.data.challenge', this.data.challenge);
         return (
-            <div>
-                {this.data.challenge.length>0 ? "jest challenge" : <ChallengeInput />}
+            <div classnName="width100">
+                {this.data.challenge.length>0 ?
+                    <Challenge id = {this.data.challenge[0]._id} text={this.data.challenge[0].text} checked={this.data.challenge[0].checked}/> :
+                    <ChallengeInput />}
             </div>
 
         );

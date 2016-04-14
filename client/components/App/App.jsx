@@ -1,6 +1,4 @@
-//console.log("LOG: setting date session.get(displayedDate): ", Session.get("displayedDate"));
 Session.set("displayedDate", moment()._d);
-//console.log("LOG: date set session.get(displayedDate): ", Session.get("displayedDate"));
 
 App = React.createClass({
     // This mixin makes the getMeteorData method work
@@ -59,7 +57,6 @@ App = React.createClass({
     },
 
     allowedLayout(){
-        //console.log("LOG: APP check if user loggedIn", this.data.loggedIn);
         var allowedLayouts =['Request', 'Login', 'Register', 'Dashboard'];
         var layoutAllowed = false;
         if ($.inArray(this.props.content.props.name, allowedLayouts)>-1

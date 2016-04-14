@@ -71,7 +71,6 @@ SubTask = React.createClass({
 
     toggleCheckedSubTask() {
         // Set the checked property to the opposite of its current value
-        //console.log('toggle');
         var _wholeTask = Tasks.find(this.props.taskId).fetch();
         var _subtasks = _wholeTask[0].subtasks;
         var _checked = _.findWhere(_subtasks, {key: this.props.myKey}).checked;
@@ -91,7 +90,6 @@ SubTask = React.createClass({
             $set: {subtasks: _subtasks}
         });
         _wholeTask = Tasks.find(this.state.taskId).fetch();
-        //console.log(_wholeTask);
     },
 
     update(e){
@@ -99,7 +97,6 @@ SubTask = React.createClass({
     },
 
     deleteSubTask(event){
-        //console.log('deleteing subtask...');
         var _wholeTask = Tasks.find(this.props.taskId).fetch();
         var _subtasks = _wholeTask[0].subtasks;
         var _deletedTask = _.findWhere(_subtasks, {key: this.props.myKey});
@@ -108,7 +105,6 @@ SubTask = React.createClass({
             $set: {subtasks: _subtasks}
         });
         _wholeTask = Tasks.find(this.state.taskId).fetch();
-        //console.log(_wholeTask);
 
     }
 

@@ -3,9 +3,7 @@ Login = React.createClass({
         e.preventDefault();
         var _email = $('#email_x').val();
         var _password = $('#password').val();
-        //console.log("LOG: lofggin in as ", _email );
         Meteor.loginWithPassword(_email, _password, FlowRouter.go('/'));
-        //console.log("LOG: LOGIN routed at /");
     },
     render(){
         return(

@@ -13,7 +13,7 @@ ChallengeInput= React.createClass({
     handleSubmit(event){
         event.preventDefault();
         var text = React.findDOMNode(this.refs.textInput).value.trim();
-        var _date = moment(Session.get("displayedDate")).format("L")
+        var _date = moment(Session.get("displayedDate")).format("L");
 
         Tasks.insert(
             {

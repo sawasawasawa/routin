@@ -5,7 +5,6 @@ TaskList = React.createClass({
     // Loads items from the Tasks collection and puts them on this.data.tasks
     getMeteorData() {
         Meteor.subscribe('tasks');
-        //console.log('LOG: TASKLIST getMeteorData displayedDate: ', Session.get("displayedDate"));
         return {
             habits: Tasks.find({
                 userId: Meteor.userId(),
@@ -151,6 +150,9 @@ TaskList = React.createClass({
                         </button>
                     </div>
                 </div>
+
+                <Challenge30 />
+
                 <div>
                     <h3>Habits</h3>
                     {this.data.habits.length <7 ? <HabitInput /> : null }
@@ -178,6 +180,7 @@ TaskList = React.createClass({
                         </tbody>
                     </table>
                 </div>
+                <HistoryList />
             </div>
 
         );

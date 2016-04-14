@@ -20,7 +20,7 @@
     margin-right: auto;
     margin-left: auto;
     width: 600px;
-    min-width: 500px;
+    /*min-width: 500px;*/
 }
 
 li {
@@ -200,4 +200,36 @@ li.checked .task-text {
 
 tr:first-child {
     border-top:0px !important;
+}
+.historyList{
+    position:relative;
+    transition: position;
+    -webkit-transition-property: position;
+    -webkit-transition-duration: 2s;
+    -webkit-transition-timing-function: ease;
+    transition-property: width;
+    transition-duration: 2s;
+    transition-timing-function: ease;
+    overflow: scroll;
+}
+@media (min-width: 1200px) {
+
+
+    .historyList {
+        position: fixed;
+        width:300px;
+        top:100px;
+        left:20px;
+        height:auto;
+        -webkit-transition-property: position;
+        -webkit-transition-duration: 2s;
+        -webkit-transition-timing-function: ease;
+        transition-property: position ;
+        transition-property: width;
+        transition-duration: 2s;
+        transition-timing-function: ease;
+        overflow: scroll;
+
+    }
+
 }

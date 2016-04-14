@@ -63,7 +63,7 @@ TaskRow = React.createClass({
                             ></i>
                             </td>
                         </tr>
-                        {this.props.subtasks.length>0 &&  this.props.type != "habit" ?
+                        {(this.props.type != "habit" && this.props.type != "completedTask") && this.props.subtasks.length>0  ?
                         <tr className="width100">
                             <td colSpan="1"></td>
                             <td colSpan="5" className="width100">
@@ -106,7 +106,6 @@ TaskRow = React.createClass({
     },
 
     updateTask() {
-        console.log('up');
         Tasks.update(this.props.task._id, {
             $set: {text: this.state.text}
         });
