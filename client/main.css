@@ -140,9 +140,10 @@ li.checked .task-text {
 .streakInd {
     width: 15px;
     background-color: lightblue;
-    border: 1px solid lightgray;
-    margin:1px;
+    border: 1px transparent;
+    margin:3px;
     height: 15px;
+    border-radius: 50%;
 }
 
  .table > tbody > tr >td{
@@ -234,3 +235,16 @@ tr:first-child {
 
 }
 .challenge > *{display: inline-block}
+
+.challengeStreak {
+    display: flex;
+}
+.challengeStreakCell {
+    margin:3px;
+    width: 3%;
+    height:10px;
+    border: 1px transparent;
+    border-radius: 50%;
+    height: 15px;
+
+}

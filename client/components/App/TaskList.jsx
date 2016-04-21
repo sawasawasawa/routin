@@ -53,6 +53,8 @@ TaskList = React.createClass({
             dueDate: moment(Session.get("displayedDate")).format("L")
         }).fetch();
 
+        this.copyChallenge();
+
         this.copyHabits();
 
         this.copyMIT();
@@ -80,6 +82,36 @@ TaskList = React.createClass({
     copyHabits(){
         var _tasksToCopy = Tasks.find({
             cat: 'habit',
+            userId: Meteor.userId(),
+            dueDate: moment(Session.get("displayedDate")).format("L")
+        }).fetch();
+
+        _tasksToCopy.forEach(function (myDoc) {
+            var copy = myDoc;
+            var _streak_arr = copy.streak_arr;
+            _streak_arr.push(copy.checked);
+            _streak_arr.shift();
+            Tasks.insert(
+                {
+                    userId: Meteor.userId(),
+                    text: copy.text,
+                    createdAt: copy.createdAt,
+                    cat: copy.cat,
+                    dueDate_first: copy.dueDate_first,
+                    dueDate: moment(copy.dueDate).add(1, 'days').format("L"),
+                    streak_arr: _streak_arr,
+                    username: copy.username,
+                    checked: false,
+                    subtasks: copy.subtasks
+                }
+            );
+
+        });
+    },
+
+    copyChallenge(){
+        var _tasksToCopy = Tasks.find({
+            cat: 'challenge',
             userId: Meteor.userId(),
             dueDate: moment(Session.get("displayedDate")).format("L")
         }).fetch();

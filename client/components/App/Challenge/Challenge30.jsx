@@ -1,4 +1,4 @@
-Challenge30= React.createClass({
+Challenge30 = React.createClass({
     // This mixin makes the getMeteorData method work
     mixins: [ReactMeteorData],
 
@@ -14,14 +14,18 @@ Challenge30= React.createClass({
         }
     },
 
+    componentWillReceiveProps(){console.log('challenge30 received props')},
 
     render() {
-        console.log('PINGWIN: this.data.challenge', this.data.challenge);
         return (
             <div classnName="width100">
                 {this.data.challenge.length>0 ?
-                    <Challenge id = {this.data.challenge[0]._id} text={this.data.challenge[0].text} checked={this.data.challenge[0].checked}/> :
-                    <ChallengeInput />}
+                <Challenge id={this.data.challenge[0]._id}
+                           text={this.data.challenge[0].text}
+                           checked={this.data.challenge[0].checked}
+                           streak_arr={this.data.challenge[0].streak_arr}
+                /> :
+                <ChallengeInput />}
             </div>
 
         );
