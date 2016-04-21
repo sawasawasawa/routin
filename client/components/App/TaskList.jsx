@@ -26,6 +26,13 @@ TaskList = React.createClass({
         }
     },
 
+    //renderTable(taskType){
+    //    var ComponentName = taskType+'Row';
+    //    return this.data[taskType].map((task) => {
+    //        return <MITRow type=taskType key={task._id} keyId={task._id} task={task} subtasks={task.subtasks}/>;
+    //    });
+    //},
+
     renderMITTable() {
         return this.data.mit.map((task) => {
             return <MITRow type="mit" key={task._id} keyId={task._id} task={task} subtasks={task.subtasks}/>;
@@ -40,7 +47,7 @@ TaskList = React.createClass({
 
     renderTasksTable() {
         return this.data.dueTasks.map((task) => {
-            return <TaskRow key={task._id} keyId={task._id} task={task} subtasks={task.subtasks}/>;
+            return <TaskRow type="task" key={task._id} keyId={task._id} task={task} subtasks={task.subtasks}/>;
         });
     },
 
@@ -54,9 +61,7 @@ TaskList = React.createClass({
         }).fetch();
 
         this.copyChallenge();
-
         this.copyHabits();
-
         this.copyMIT();
 
         _tasksToCopy.forEach(function (myDoc) {
@@ -75,7 +80,6 @@ TaskList = React.createClass({
                     subtasks: copy.subtasks
                 }
             );
-
         });
     },
 
@@ -105,7 +109,6 @@ TaskList = React.createClass({
                     subtasks: copy.subtasks
                 }
             );
-
         });
     },
 
@@ -135,7 +138,6 @@ TaskList = React.createClass({
                     subtasks: copy.subtasks
                 }
             );
-
         });
     },
 
@@ -146,8 +148,6 @@ TaskList = React.createClass({
             userId: Meteor.userId(),
             dueDate: moment(Session.get("displayedDate")).format("L")
         }).fetch();
-
-
 
         _tasksToCopy.forEach(function (myDoc) {
             var copy = myDoc;
@@ -168,7 +168,6 @@ TaskList = React.createClass({
                     subtasks: copy.subtasks
                 }
             );
-
         });
     },
 

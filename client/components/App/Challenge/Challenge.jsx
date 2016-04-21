@@ -14,11 +14,11 @@ Challenge = React.createClass({
     componentWillUpdate(){
         this.rePaintStreak();
     },
-    shouldComponentUpdate: function(nextProps) {
-        console.log('PINGWIN: nextprops', nextProps);
-        console.log('PINGWIN: props',this.props);
-        return nextProps !== this.props;
-    },
+    //shouldComponentUpdate: function(nextProps) {
+    //    console.log('PINGWIN: nextprops', nextProps);
+    //    console.log('PINGWIN: props',this.props);
+    //    return nextProps !== this.props;
+    //},
     componentWillReceiveProps(){console.log(this.props.streak_arr);
         this.rePaintStreak();},
 
@@ -35,7 +35,7 @@ Challenge = React.createClass({
     },
 
     rePaintStreak(){
-        console.log('painting');
+        console.log('REpainting');
         var streak = d3.select(".challengeStreak");
         streak.selectAll('div').remove();
         streak.selectAll("div")
@@ -53,6 +53,7 @@ Challenge = React.createClass({
                 <h3>30 day challenge</h3>
                 <div className="challenge width100">
                     <input
+                        className="challengeCheckbox"
                         type="checkbox"
                         checked={this.props.checked}
                         onChange={this.toggleChecked}/>

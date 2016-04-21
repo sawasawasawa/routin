@@ -8,7 +8,7 @@ DateControl = React.createClass({
     componentDidMount(){
         d = Session.get("displayedDate");
         $('#datepicker').datepicker({
-            //defaultViewDate: {year:moment(d).year(), month:moment(d).month(), day:moment(d).day},
+            defaultViewDate: {year:moment(d).year(), month:moment(d).month(), day:moment(d).day},
             format: "D, dd M",
             autoclose: true,
             todayHighlight: true,
@@ -16,7 +16,6 @@ DateControl = React.createClass({
         }).on('changeDate', function (e) {
             Session.set("displayedDate", moment(e.date)._d);
         });
-
     },
 
     render(){

@@ -248,3 +248,9 @@ tr:first-child {
     height: 15px;
 
 }
+.challengeCheckbox{
+    margin-left: 16px !important;
+    margin-right: 35px !important;
+}
+
+h3 {padding-left: 50px}
