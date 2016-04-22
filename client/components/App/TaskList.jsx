@@ -26,6 +26,11 @@ TaskList = React.createClass({
         }
     },
 
+    //shouldComponentUpdate(nextProps) {
+    //    console.log(this.props.date);
+    //    console.log(nextProps.date);
+    //    return nextProps.date !== this.props.date;
+    //},
     //renderTable(taskType){
     //    var ComponentName = taskType+'Row';
     //    return this.data[taskType].map((task) => {
@@ -211,7 +216,7 @@ TaskList = React.createClass({
                         </tbody>
                     </table>
                 </div>
-                <HistoryList />
+
             </div>
 
         );

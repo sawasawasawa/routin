@@ -8,13 +8,17 @@ DateControl = React.createClass({
     componentDidMount(){
         d = Session.get("displayedDate");
         $('#datepicker').datepicker({
-            defaultViewDate: {year:moment(d).year(), month:moment(d).month(), day:moment(d).day},
+            //defaultViewDate: {year:moment(d).year(), month:moment(d).month(), day:moment(d).day},
             format: "D, dd M",
             autoclose: true,
             todayHighlight: true,
             //toggleActive: true
-        }).on('changeDate', function (e) {
+        }).on('changeDate', function (e){
+            console.log(e);
+            console.log('deatpicker shown');
+            console.log('get before change', Session.get('displayedDate'));
             Session.set("displayedDate", moment(e.date)._d);
+            console.log('get after change', Session.get('displayedDate'));
         });
     },
 
@@ -52,13 +56,13 @@ DateControl = React.createClass({
     },
 
     displayedDateNext(){
-        var _nextDate = moment(this.state.displayedDate).add(1, 'days');
+        var _nextDate = moment(Session.get("displayedDate")).add(1, 'days');
         this.setState({displayedDate: _nextDate});
         Session.set("displayedDate", moment(_nextDate)._d);
     },
 
     displayedDatePrev(){
-        var _nextDate = moment(this.state.displayedDate).add(-1, 'days');
+        var _nextDate = moment(Session.get("displayedDate")).add(-1, 'days');
         this.setState({displayedDate: _nextDate});
         Session.set("displayedDate", moment(_nextDate)._d);
     }
