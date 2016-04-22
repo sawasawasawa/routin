@@ -31,12 +31,22 @@ TaskList = React.createClass({
     //    console.log(nextProps.date);
     //    return nextProps.date !== this.props.date;
     //},
-    //renderTable(taskType){
-    //    var ComponentName = taskType+'Row';
-    //    return this.data[taskType].map((task) => {
-    //        return <MITRow type=taskType key={task._id} keyId={task._id} task={task} subtasks={task.subtasks}/>;
-    //    });
-    //},
+    renderTable(taskType){
+        console.log('PINGWIN: this.data[taskType]', this.data[taskType]);
+        return this.data[taskType].map((task) => {
+            switch(taskType) {
+                case 'dueTasks':
+                    return <TaskRow type={taskType} key={task._id} keyId={task._id} task={task} subtasks={task.subtasks}/>;
+                    break;
+                case 'mit':
+                    return <MITRow type={taskType} key={task._id} keyId={task._id} task={task} subtasks={task.subtasks}/>;
+                    break;
+                case 'habits':
+                    return <HabitRow type={taskType} key={task._id} keyId={task._id} task={task} subtasks={task.subtasks}/>;
+                    break;
+            }
+        });
+    },
 
     renderMITTable() {
         return this.data.mit.map((task) => {
@@ -194,7 +204,7 @@ TaskList = React.createClass({
                     {this.data.habits.length <7 ? <HabitInput /> : null }
                     <table className="table habit-table">
                         <tbody>
-                        {this.renderHabitsTable()}
+                        {this.renderTable('habits')}
                         </tbody>
                     </table>
                 </div>
@@ -203,7 +213,7 @@ TaskList = React.createClass({
                     {this.data.mit.length <3 ? <MITInput /> : null }
                     <table className="table mit-table">
                         <tbody>
-                        {this.renderMITTable()}
+                        {this.renderTable('mit')}
                         </tbody>
                     </table>
                 </div>
@@ -212,7 +222,7 @@ TaskList = React.createClass({
                     <TaskInput />
                     <table className="table task-table">
                         <tbody>
-                        {this.renderTasksTable()}
+                        {this.renderTable('dueTasks')}
                         </tbody>
                     </table>
                 </div>
