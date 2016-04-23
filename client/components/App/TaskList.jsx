@@ -26,11 +26,6 @@ TaskList = React.createClass({
         }
     },
 
-    //shouldComponentUpdate(nextProps) {
-    //    console.log(this.props.date);
-    //    console.log(nextProps.date);
-    //    return nextProps.date !== this.props.date;
-    //},
     renderTable(taskType){
         console.log('PINGWIN: this.data[taskType]', this.data[taskType]);
         return this.data[taskType].map((task) => {
@@ -48,68 +43,28 @@ TaskList = React.createClass({
         });
     },
 
-    renderMITTable() {
-        return this.data.mit.map((task) => {
-            return <MITRow type="mit" key={task._id} keyId={task._id} task={task} subtasks={task.subtasks}/>;
-        });
-    },
-
-    renderHabitsTable() {
-        return this.data.habits.map((task) => {
-            return <HabitRow type="habit" key={task._id} keyId={task._id} task={task} subtasks={task.subtasks}/>;
-        });
-    },
-
-    renderTasksTable() {
-        return this.data.dueTasks.map((task) => {
-            return <TaskRow type="task" key={task._id} keyId={task._id} task={task} subtasks={task.subtasks}/>;
-        });
-    },
-
     copyUnchecked(){
-        //TODO zamienić to na subset dueTaskscopying unckeckd
-        var _tasksToCopy = Tasks.find({
-            checked: false,
-            cat: 'task',
-            userId: Meteor.userId(),
-            dueDate: moment(Session.get("displayedDate")).format("L")
-        }).fetch();
-
         this.copyChallenge();
-        this.copyHabits();
-        this.copyMIT();
-
-        _tasksToCopy.forEach(function (myDoc) {
-            var copy = myDoc;
-            Tasks.insert(
-                {
-                    userId: Meteor.userId(),
-                    text: copy.text,
-                    createdAt: copy.createdAt,
-                    cat: copy.cat,
-                    dueDate_first: copy.dueDate_first,
-                    dueDate: moment(copy.dueDate).add(1, 'days').format("L"),
-                    streak_arr: [0, 0, 0, 0, 0, 0, 0],
-                    username: copy.username,
-                    checked: false,
-                    subtasks: copy.subtasks
-                }
-            );
-        });
+        this.copyTasksFromCategory('task');
+        this.copyTasksFromCategory('mit');
+        this.copyTasksFromCategory('habit');
     },
 
-    copyHabits(){
+    copyTasksFromCategory(category){
         var _tasksToCopy = Tasks.find({
-            cat: 'habit',
+            cat: category,
             userId: Meteor.userId(),
             dueDate: moment(Session.get("displayedDate")).format("L")
         }).fetch();
 
         _tasksToCopy.forEach(function (myDoc) {
             var copy = myDoc;
-            var _streak_arr = copy.streak_arr;
-            _streak_arr.push(copy.checked);
-            _streak_arr.shift();
+            var _streak_arr = [];
+            if (category==='habit'){
+                _streak_arr = copy.streak_arr;
+                _streak_arr.push(copy.checked);
+                _streak_arr.shift();
+            }
             Tasks.insert(
                 {
                     userId: Meteor.userId(),
@@ -126,40 +81,11 @@ TaskList = React.createClass({
             );
         });
     },
+
 
     copyChallenge(){
         var _tasksToCopy = Tasks.find({
             cat: 'challenge',
-            userId: Meteor.userId(),
-            dueDate: moment(Session.get("displayedDate")).format("L")
-        }).fetch();
-
-        _tasksToCopy.forEach(function (myDoc) {
-            var copy = myDoc;
-            var _streak_arr = copy.streak_arr;
-            _streak_arr.push(copy.checked);
-            _streak_arr.shift();
-            Tasks.insert(
-                {
-                    userId: Meteor.userId(),
-                    text: copy.text,
-                    createdAt: copy.createdAt,
-                    cat: copy.cat,
-                    dueDate_first: copy.dueDate_first,
-                    dueDate: moment(copy.dueDate).add(1, 'days').format("L"),
-                    streak_arr: _streak_arr,
-                    username: copy.username,
-                    checked: false,
-                    subtasks: copy.subtasks
-                }
-            );
-        });
-    },
-
-    copyMIT(){
-        var _tasksToCopy = Tasks.find({
-            checked: false,
-            cat: 'mit',
             userId: Meteor.userId(),
             dueDate: moment(Session.get("displayedDate")).format("L")
         }).fetch();
