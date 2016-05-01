@@ -138,11 +138,11 @@ li.checked .task-text {
 .streakFields{ display: inline-block;}
 .streakFields> .streakInd { display: inline-block;}
 .streakInd {
-    width: 15px;
+    width: 10px;
     background-color: lightblue;
     border: 1px transparent;
     margin:3px;
-    height: 15px;
+    height: 10px;
     border-radius: 50%;
 }
 
@@ -236,16 +236,21 @@ tr:first-child {
 }
 .challenge > *{display: inline-block}
 
+.challengeStreakContainter{
+    display:flex;
+}
 .challengeStreak {
-    display: flex;
+    display: block;
+    margin:auto;
 }
 .challengeStreakCell {
+    display: inline-block;
     margin:3px;
-    width: 3%;
+    width: 10px;
     height:10px;
     border: 1px transparent;
     border-radius: 50%;
-    height: 15px;
+
 
 }
 .challengeCheckbox{
@@ -254,3 +259,8 @@ tr:first-child {
 }
 
 h3 {padding-left: 50px}
+
+.yes-no {
+    float:right;
+    width: 90px;
+}
