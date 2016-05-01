@@ -14,11 +14,7 @@ DateControl = React.createClass({
             todayHighlight: true,
             //toggleActive: true
         }).on('changeDate', function (e){
-            console.log(e);
-            console.log('deatpicker shown');
-            console.log('get before change', Session.get('displayedDate'));
             Session.set("displayedDate", moment(e.date)._d);
-            console.log('get after change', Session.get('displayedDate'));
         });
     },
 

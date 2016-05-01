@@ -22,12 +22,20 @@ TaskList = React.createClass({
                 userId: Meteor.userId(),
                 cat: 'task',
                 dueDate: moment(Session.get("displayedDate")).format("L")
-            }, {sort: {checked: 1}}).fetch()
+            }, {sort: {checked: 1}}).fetch(),
+
+            questionnaire: Tasks.find({
+                userId: Meteor.userId(),
+                cat: 'questionnaire',
+                dueDate: moment(Session.get("displayedDate")).format("L")
+            }, {sort: {createdAt: 1}}).fetch()
         }
     },
+    
+    
 
     renderTable(taskType){
-        console.log('PINGWIN: this.data[taskType]', this.data[taskType]);
+        // console.log('PINGWIN: this.data[taskType]', this.data[taskType]);
         return this.data[taskType].map((task) => {
             switch(taskType) {
                 case 'dueTasks':
@@ -38,6 +46,9 @@ TaskList = React.createClass({
                     break;
                 case 'habits':
                     return <HabitRow type={taskType} key={task._id} keyId={task._id} task={task} subtasks={task.subtasks}/>;
+                    break;
+                case 'questionnaire':
+                    return <QuestionnaireRow type={taskType} key={task._id} keyId={task._id} task={task}/>;
                     break;
             }
         });
@@ -152,7 +163,15 @@ TaskList = React.createClass({
                         </tbody>
                     </table>
                 </div>
-
+                <div className="table-responsive">
+                    <h3>Daily Questionnaire</h3>
+                    <QuestionnaireInput />
+                    <table className="table questionnaire-table">
+                        <tbody>
+                        {this.renderTable('questionnaire')}
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
         );

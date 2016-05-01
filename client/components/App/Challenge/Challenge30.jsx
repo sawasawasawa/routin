@@ -14,7 +14,7 @@ Challenge30 = React.createClass({
         }
     },
 
-    componentWillReceiveProps(){console.log('challenge30 received props')},
+    // componentWillReceiveProps(){console.log('challenge30 received props')},
 
     render() {
         return (

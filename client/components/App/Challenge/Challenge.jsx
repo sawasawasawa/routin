@@ -19,11 +19,10 @@ Challenge = React.createClass({
     //    console.log('PINGWIN: props',this.props);
     //    return nextProps !== this.props;
     //},
-    componentWillReceiveProps(){console.log(this.props.streak_arr);
+    componentWillReceiveProps(){
         this.rePaintStreak();},
 
     paintStreak(){
-        console.log('painting');
         var streak = d3.select(".challengeStreak")
             .selectAll("div")
             .data(this.props.streak_arr)
@@ -35,7 +34,6 @@ Challenge = React.createClass({
     },
 
     rePaintStreak(){
-        console.log('REpainting');
         var streak = d3.select(".challengeStreak");
         streak.selectAll('div').remove();
         streak.selectAll("div")
@@ -58,7 +56,9 @@ Challenge = React.createClass({
                         checked={this.props.checked}
                         onChange={this.toggleChecked}/>
                     <div>{this.props.text}</div>
-                    <div className="challengeStreak"></div>
+                    <div className="challengeStreakContainter">
+                        <div className="challengeStreak"></div>
+                    </div>
                 </div>
             </div>
         )
