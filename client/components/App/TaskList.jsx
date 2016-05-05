@@ -62,8 +62,10 @@ TaskList = React.createClass({
     },
 
     copyTasksFromCategory(category){
+        const _checkedQuery = category == 'habit' ? {$exists: true} : false;
         var _tasksToCopy = Tasks.find({
             cat: category,
+            checked: _checkedQuery,
             userId: Meteor.userId(),
             dueDate: moment(Session.get("displayedDate")).format("L")
         }).fetch();
