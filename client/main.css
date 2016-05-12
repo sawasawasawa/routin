@@ -2,7 +2,7 @@ body {
     /*background-color: #315481;*/
     /*background-image: linear-gradient(to bottom, #315481, #918e82 100%);*/
     /*background-attachment: fixed;*/
-    background-image: url('/img/rainbowFall.jpeg');
+    background-image: url('/img/2.jpeg');
     background-size:cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -109,6 +109,10 @@ nav{opacity:77%}
     float: none;
 }
 
+.navbar .navbar-default {
+    margin-bottom:0px !important;
+}
+
 .navbar-brand {
     height: 60px;
 }
@@ -210,6 +214,7 @@ nav{opacity:77%}
     .main-container {
         width: 100%;
         min-width:100px
+        height:100%
     }
 
     .task-text-input .subtask-text-input {
