@@ -10,7 +10,7 @@ TaskList = React.createClass({
                 userId: Meteor.userId(),
                 dueDate: moment(Session.get("displayedDate")).format("L"),
                 cat: 'habit'
-            }, {sort: {checked: 1}}).fetch(),
+            }, {sort: {createdAt: 1}}).fetch(),
 
             mit: Tasks.find({
                 userId: Meteor.userId(),

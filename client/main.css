@@ -7,8 +7,21 @@ body {
     background-repeat: no-repeat;
     background-position: center;
 }
+html,body {
+    height:100%;
+}
+
+nav {opacity:0.7}
+
+#react-root,
+#react-root > div,
+#react-root > div > div{
+    height:100%;
+}
 
 .taskList{
+    height: 100%;
+    padding:10px;
     background-color:white;
     opacity: 0.9;
 }
@@ -35,6 +48,7 @@ body {
 }
 
 .main-container {
+    height: 90%;
     margin-right: auto;
     margin-left: auto;
     width: 600px;
@@ -109,7 +123,7 @@ nav{opacity:77%}
     float: none;
 }
 
-.navbar .navbar-default {
+.navbar  {
     margin-bottom:0px !important;
 }
 
