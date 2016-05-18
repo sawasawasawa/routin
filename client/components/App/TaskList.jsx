@@ -4,31 +4,43 @@ TaskList = React.createClass({
 
     // Loads items from the Tasks collection and puts them on this.data.tasks
     getMeteorData() {
-        Meteor.subscribe('tasks');
+        const handle = Meteor.subscribe('tasks');
+        const _date = moment(Session.get("displayedDate")).format("L");
+
+
         return {
+
+            ready: handle.ready(),
+
             habits: Tasks.find({
                 userId: Meteor.userId(),
-                dueDate: moment(Session.get("displayedDate")).format("L"),
+                dueDate: _date,
                 cat: 'habit'
             }, {sort: {createdAt: 1}}).fetch(),
 
             mit: Tasks.find({
                 userId: Meteor.userId(),
-                dueDate: moment(Session.get("displayedDate")).format("L"),
+                dueDate: _date,
                 cat: 'mit'
             }, {sort: {checked: 1}}).fetch(),
 
             dueTasks: Tasks.find({
                 userId: Meteor.userId(),
                 cat: 'task',
-                dueDate: moment(Session.get("displayedDate")).format("L")
+                dueDate: _date
             }, {sort: {checked: 1}}).fetch(),
 
             questionnaire: Tasks.find({
                 userId: Meteor.userId(),
                 cat: 'questionnaire',
-                dueDate: moment(Session.get("displayedDate")).format("L")
-            }, {sort: {createdAt: 1}}).fetch()
+                dueDate: _date
+            }, {sort: {createdAt: 1}}).fetch(),
+
+            journal: Tasks.findOne({
+                userId: Meteor.userId(),
+                cat: 'journal',
+                date: _date
+            })
         }
     },
 
@@ -128,7 +140,17 @@ TaskList = React.createClass({
         });
     },
 
+
     render() {
+
+        if (!this.data.ready) {
+            return <div className="centered">
+                <h1>Loading...</h1>
+            </div>
+
+        }
+
+
         return (
             <div className="taskList">
                 <div className="taskList-inner">
@@ -145,7 +167,7 @@ TaskList = React.createClass({
 
                     <div>
                         <h3>Habits</h3>
-                        {this.data.habits.length <7 ? <HabitInput /> : null }
+                        {this.data.habits.length < 7 ? <HabitInput /> : null }
                         <table className="table habit-table">
                             <tbody>
                             {this.renderTable('habits')}
@@ -154,7 +176,7 @@ TaskList = React.createClass({
                     </div>
                     <div>
                         <h3>Most Important Tasks</h3>
-                        {this.data.mit.length <3 ? <MITInput /> : null }
+                        {this.data.mit.length < 3 ? <MITInput /> : null }
                         <table className="table mit-table">
                             <tbody>
                             {this.renderTable('mit')}
@@ -179,6 +201,9 @@ TaskList = React.createClass({
                             </tbody>
                         </table>
                     </div>
+
+                    <JournalContainer journal={this.data.journal}/>
+
                 </div>
             </div>
 
