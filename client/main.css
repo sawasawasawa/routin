@@ -57,6 +57,10 @@ nav {opacity:0.7}
     /*min-width: 500px;*/
 }
 
+.main-container * {
+    overflow: auto;
+}
+
 li {
     /*position: relative;*/
     display: block;

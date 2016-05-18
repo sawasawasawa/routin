@@ -11,9 +11,13 @@ JournalElement = React.createClass({
     },
 
     update(e){
+        this.setState({text: e.target.value})
+    },
+
+    onBlur(){
         const key = this.props.type;
         const id = this.props.journalId;
-        const value = e.target.value;
+        const value = this.state.text;
         var _updateObject = { };
         _updateObject[key] = value;
         Tasks.update({_id: id},
@@ -52,8 +56,9 @@ JournalElement = React.createClass({
                 <textarea className="form-control "
                           rows="3"
                           id={this.props.type}
-                          value={this.props.text}
+                          value={this.state.text}
                           onChange={this.update}
+                          onBlur={this.onBlur}
                 ></textarea>
             </div>
         );
