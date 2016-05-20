@@ -1,6 +1,7 @@
 JournalElement = React.createClass({
     propTypes: {
         type: React.PropTypes.string.isRequired,
+        journalId: React.PropTypes.string.isRequired,
     },
 
 
@@ -14,13 +15,19 @@ JournalElement = React.createClass({
         this.setState({text: e.target.value})
     },
 
-    onBlur(){
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            text: nextProps.text
+        });
+    },
+    updateJournal(){
         const key = this.props.type;
         const id = this.props.journalId;
         const value = this.state.text;
         var _updateObject = { };
         _updateObject[key] = value;
-        Tasks.update({_id: id},
+        Tasks.update( id,
             {$set: _updateObject}
         );
     },
@@ -56,9 +63,12 @@ JournalElement = React.createClass({
                 <textarea className="form-control "
                           rows="3"
                           id={this.props.type}
+                          journalId={this.props.journalId}
                           value={this.state.text}
                           onChange={this.update}
-                          onBlur={this.onBlur}
+                          onSubmit={this.updateJournal}
+                          onBlur={this.updateJournal}
+
                 ></textarea>
             </div>
         );
