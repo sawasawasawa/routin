@@ -39,11 +39,13 @@ TaskRow = React.createClass({
                                     onChange={this.toggleChecked}/>
 
                             </td>
-                            <td ><i className="glyphicon glyphicon-plus"
+                            {this.props.type != 'habit' ?
+                              <td ><i className="glyphicon glyphicon-plus"
                                     aria-hidden="true"
-                                    onClick={this.addSubtask}
-                            ></i></td>
-                            <td className="width80">
+                                    onClick={this.addSubtask}>
+                              </i></td>
+                                : null}
+                            <td >
                                 <input className="task-text-input"
                                        type="text"
                                        onChange={this.update}
@@ -56,20 +58,21 @@ TaskRow = React.createClass({
 
 
                             </td>
-
+                          {this.props.type === "habit" ?
+                            <StreakFields streak={this.props.task.streak_arr}/> : null}
                             <td ><i className="glyphicon glyphicon-remove-circle"
                                     aria-hidden="true"
                                     onClick={this.deleteTask}
                             ></i>
                             </td>
                         </tr>
-                        {(this.props.type != "habit" && this.props.type != "completedTask") && this.props.subtasks.length>0  ?
+                        {(this.props.type != "habit" && this.props.type != "completedTask") && this.props.subtasks && this.props.subtasks.length>0  ?
                         <tr className="width100">
                             <td colSpan="1"></td>
                             <td colSpan="5" className="width100">
                                 <SubTaskList subtasks={this.props.subtasks} taskId={this.props.task._id}/>
                             </td>
-                        </tr> : false
+                        </tr> : null
                             }
                         </tbody>
                     </table>
@@ -130,3 +133,8 @@ TaskRow = React.createClass({
     }
 
 });
+
+
+TaskRow.propTypes = {
+  type: React.PropTypes.string.isRequired
+}

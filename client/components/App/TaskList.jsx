@@ -15,13 +15,13 @@ TaskList = React.createClass({
 
             ready: handle.ready(),
 
-            habits: docsForDay.filter((task) => {
+            habit: docsForDay.filter((task) => {
                 return task.cat === 'habit'
             }),
             mit: docsForDay.filter((task) => {
                 return task.cat === 'mit'
             }),
-            dueTasks: docsForDay.filter((task) => {
+            task: docsForDay.filter((task) => {
                 return task.cat === 'task'
             }),
             questionnaire: docsForDay.filter((task) => {
@@ -34,25 +34,14 @@ TaskList = React.createClass({
     },
 
 
-    renderTable(taskType){
+    renderList(taskType){
         // console.log('PINGWIN: this.data[taskType]', this.data[taskType]);
         return this.data[taskType].map((task) => {
-            switch (taskType) {
-                case 'dueTasks':
-                    return <TaskRow type={taskType} key={task._id} keyId={task._id} task={task}
-                                    subtasks={task.subtasks}/>;
-                    break;
-                case 'mit':
-                    return <MITRow type={taskType} key={task._id} keyId={task._id} task={task}
-                                   subtasks={task.subtasks}/>;
-                    break;
-                case 'habits':
-                    return <HabitRow type={taskType} key={task._id} keyId={task._id} task={task}
-                                     subtasks={task.subtasks}/>;
-                    break;
-                case 'questionnaire':
-                    return <QuestionnaireRow type={taskType} key={task._id} keyId={task._id} task={task}/>;
-                    break;
+            if (taskType == 'questionnaire') {
+                //TODO get rid of this
+                    return <QuestionnaireRow type={taskType} key={task._id} keyId={task._id} task={task}/>
+            } else {
+              return <TaskRow type={taskType} key={task._id} keyId={task._id} task={task}/>
             }
         });
     },
@@ -156,37 +145,37 @@ TaskList = React.createClass({
 
                     <div>
                         <h3>Habits</h3>
-                        {this.data.habits.length < 7 ? <HabitInput /> : null }
+                        {this.data.habit.length < 7 ? <TaskInput type={'habit'}/> : null }
                         <table className="table habit-table">
                             <tbody>
-                            {this.renderTable('habits')}
+                            {this.renderList('habit')}
                             </tbody>
                         </table>
                     </div>
                     <div>
                         <h3>Most Important Tasks</h3>
-                        {this.data.mit.length < 3 ? <MITInput /> : null }
+                        {this.data.mit.length < 3 ? <TaskInput type={'mit'}/> : null }
                         <table className="table mit-table">
                             <tbody>
-                            {this.renderTable('mit')}
+                            {this.renderList('mit')}
                             </tbody>
                         </table>
                     </div>
                     <div className="table-responsive">
                         <h3>Tasks</h3>
-                        <TaskInput />
+                        <TaskInput type={'task'}/>
                         <table className="table task-table">
                             <tbody>
-                            {this.renderTable('dueTasks')}
+                            {this.renderList('task')}
                             </tbody>
                         </table>
                     </div>
                     <div className="table-responsive">
                         <h3>Daily Questionnaire</h3>
-                        <QuestionnaireInput />
+                        <TaskInput type={'questionnaire'} />
                         <table className="table questionnaire-table">
                             <tbody>
-                            {this.renderTable('questionnaire')}
+                            {this.renderList('questionnaire')}
                             </tbody>
                         </table>
                     </div>

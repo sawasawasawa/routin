@@ -5,9 +5,27 @@ TaskInput = React.createClass({
                 <input className="form-control"
                        type="text"
                        ref="textInput"
-                       placeholder="Type to add new tasks"/>
+                       placeholder={this.getPlaceHolderText(this.props.type)}/>
             </form>
         )
+    },
+
+    getPlaceHolderText(type) {
+      switch (type) {
+        case 'mit':
+          return "Add Most Important Task";
+          break;
+        case 'habit':
+          return "Add a habit to track";
+          break;
+        case 'questionnaire':
+          return 'Add a question to ask yourself everyday';
+          break;
+        case 'task':
+        default:
+          return "Add a new task";
+          break;
+      }
     },
 
     handleSubmit(event){
@@ -20,7 +38,7 @@ TaskInput = React.createClass({
                 userId: Meteor.userId(),
                 text: text,
                 createdAt: _date,
-                cat: "task",
+                cat: this.props.type,
                 dueDate_first: _date,
                 dueDate: _date,
                 streak_arr: [0, 0, 0, 0, 0, 0, 0],
@@ -37,3 +55,6 @@ TaskInput = React.createClass({
     }
 });
 
+TaskInput.propTypes = {
+  type: React.PropTypes.string.isRequired
+}
