@@ -66,11 +66,11 @@ TaskRow = React.createClass({
                             ></i>
                             </td>
                         </tr>
-                        {(this.props.type != "habit" && this.props.type != "completedTask") && this.props.subtasks && this.props.subtasks.length>0  ?
+                        {(this.props.type != "habit" && this.props.type != "completedTask") && this.props.task.subtasks && this.props.task.subtasks.length>0  ?
                         <tr className="width100">
                             <td colSpan="1"></td>
                             <td colSpan="5" className="width100">
-                                <SubTaskList subtasks={this.props.subtasks} taskId={this.props.task._id}/>
+                                <SubTaskList subtasks={this.props.task.subtasks} taskId={this.props.task._id}/>
                             </td>
                         </tr> : null
                             }
@@ -116,9 +116,10 @@ TaskRow = React.createClass({
 
     addSubtask(event) {
         event.preventDefault();
-        //console.log("adding subtask");
-        var _subtasks = this.props.subtasks;
-        var _key = 0;
+        console.log("adding subtask");
+        var _subtasks = this.props.task.subtasks;
+      console.log('batman: _subtasks', _subtasks);
+      var _key = 0;
         var _maxKey = _.max(this.props.task.subtasks, function (subtask) {
                 return subtask.key;
             }).key + 1;

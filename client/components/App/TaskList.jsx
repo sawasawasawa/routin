@@ -33,19 +33,6 @@ TaskList = React.createClass({
         }
     },
 
-
-    renderList(taskType){
-        // console.log('PINGWIN: this.data[taskType]', this.data[taskType]);
-        return this.data[taskType].map((task) => {
-            if (taskType == 'questionnaire') {
-                //TODO get rid of this
-                    return <QuestionnaireRow type={taskType} key={task._id} keyId={task._id} task={task}/>
-            } else {
-              return <TaskRow type={taskType} key={task._id} keyId={task._id} task={task}/>
-            }
-        });
-    },
-
     copyUnchecked(){
         this.copyChallenge();
         this.copyTasksFromCategory('task');
@@ -143,49 +130,16 @@ TaskList = React.createClass({
 
                     <Challenge30 />
 
-                    <div>
-                        <h3>Habits</h3>
-                        {this.data.habit.length < 7 ? <TaskInput type={'habit'}/> : null }
-                        <table className="table habit-table">
-                            <tbody>
-                            {this.renderList('habit')}
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                        <h3>Most Important Tasks</h3>
-                        {this.data.mit.length < 3 ? <TaskInput type={'mit'}/> : null }
-                        <table className="table mit-table">
-                            <tbody>
-                            {this.renderList('mit')}
-                            </tbody>
-                        </table>
-                    </div>
-                    <div className="table-responsive">
-                        <h3>Tasks</h3>
-                        <TaskInput type={'task'}/>
-                        <table className="table task-table">
-                            <tbody>
-                            {this.renderList('task')}
-                            </tbody>
-                        </table>
-                    </div>
-                    <div className="table-responsive">
-                        <h3>Daily Questionnaire</h3>
-                        <TaskInput type={'questionnaire'} />
-                        <table className="table questionnaire-table">
-                            <tbody>
-                            {this.renderList('questionnaire')}
-                            </tbody>
-                        </table>
-                    </div>
+                    <CategoryList type={'habit'} name={'Habits'} data={this.data['habit']} maxItemCount={5}/>
+                    <CategoryList type={'mit'} name={'Most Important Tasks'} data={this.data['mit']} maxItemCount={3}/>
+                    <CategoryList type={'task'} name={'Tasks'} data={this.data['task']}/>
+                    <CategoryList type={'questionnaire'} name={'Things to remember about'} data={this.data['questionnaire']}/>
 
                     <JournalContainer journal={this.data.journal}/>
 
                 </div>
             </div>
-
         );
-    }
+    },
 });
 
