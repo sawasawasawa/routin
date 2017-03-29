@@ -2,7 +2,7 @@ FlowRouter.route('/', {
     name: 'Dashboard',
     action() {
         ReactLayout.render(App, {
-            content: <TaskList date={moment(Session.get("displayedDate")).format("L")}/>,
+            content: <TaskList />,
             nav: <Nav />
         });
     }

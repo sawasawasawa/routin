@@ -1,20 +1,19 @@
 JournalContainer = React.createClass({
 
     createJournalRecord(){
+        var _date = moment(Session.get("displayedDate")).format("L");
         var found = Tasks.find({
             userId: Meteor.userId(),
             cat: 'journal',
-            date: _date
+            dueDate: _date
         }).fetch();
 
         if (found.length == 0) {
-
-            var _date = moment(Session.get("displayedDate")).format("L");
             Tasks.insert(
                 {
                     cat: 'journal',
                     userId: Meteor.userId(),
-                    date: _date,
+                    dueDate: _date,
                     username: Meteor.user().emails[0]["address"],
                     gratefulness: '',
                     makeTodayGreat: '',

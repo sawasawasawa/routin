@@ -6,40 +6,29 @@ TaskList = React.createClass({
     getMeteorData() {
         const handle = Meteor.subscribe('tasks');
         const _date = moment(Session.get("displayedDate")).format("L");
-
+        const docsForDay = Tasks.find({
+            userId: Meteor.userId(),
+            dueDate: _date,
+          }, {sort: {createdAt: 1}}).fetch();
 
         return {
 
             ready: handle.ready(),
 
-            habits: Tasks.find({
-                userId: Meteor.userId(),
-                dueDate: _date,
-                cat: 'habit'
-            }, {sort: {createdAt: 1}}).fetch(),
-
-            mit: Tasks.find({
-                userId: Meteor.userId(),
-                dueDate: _date,
-                cat: 'mit'
-            }, {sort: {checked: 1}}).fetch(),
-
-            dueTasks: Tasks.find({
-                userId: Meteor.userId(),
-                cat: 'task',
-                dueDate: _date
-            }, {sort: {checked: 1}}).fetch(),
-
-            questionnaire: Tasks.find({
-                userId: Meteor.userId(),
-                cat: 'questionnaire',
-                dueDate: _date
-            }, {sort: {createdAt: 1}}).fetch(),
-
-            journal: Tasks.findOne({
-                userId: Meteor.userId(),
-                cat: 'journal',
-                date: _date
+            habits: docsForDay.filter((task) => {
+                return task.cat === 'habit'
+            }),
+            mit: docsForDay.filter((task) => {
+                return task.cat === 'mit'
+            }),
+            dueTasks: docsForDay.filter((task) => {
+                return task.cat === 'task'
+            }),
+            questionnaire: docsForDay.filter((task) => {
+                return task.cat === 'questionnaire'
+            }),
+            journal: docsForDay.filter((task) => {
+                return task.cat === 'journal'
             })
         }
     },
